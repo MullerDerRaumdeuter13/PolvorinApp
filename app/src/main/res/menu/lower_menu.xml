@@ -2,8 +2,20 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Perfil" />
-    <item android:title="Equipos" />
-    <item android:title="Eventos" />
-    <item android:title="Notificaciones" />
+    <item
+        android:id="@+id/Profile"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/Teams"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Equipos" />
+    <item
+        android:id="@+id/Events"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="Eventos" />
+    <item
+        android:id="@+id/Notifications"
+        android:icon="@android:drawable/ic_popup_reminder"
+        android:title="Notificaciones" />
 </menu>
