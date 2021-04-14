@@ -5,17 +5,17 @@
     <item
         android:id="@+id/Profile"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="Perfil" />
+        android:title="@string/perfil" />
     <item
         android:id="@+id/Teams"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="Equipos" />
+        android:title="@string/equipos" />
     <item
         android:id="@+id/Events"
         android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="Eventos" />
+        android:title="@string/eventos" />
     <item
         android:id="@+id/Notifications"
         android:icon="@android:drawable/ic_popup_reminder"
-        android:title="Notificaciones" />
+        android:title="@string/notificaciones" />
 </menu>

@@ -19,7 +19,9 @@ class Login : AppCompatActivity() {
         val myRef = database.getReference("/autor")
         myRef.setValue("Oscar Zuniga Lara A01654827,  PRUEBA 2")
 
-        println("TERMINANDO ESCRITURA")
+
+
+        println("TERMINANDO ESCRITURAasdfasdfasdf")
     }
 
 }
