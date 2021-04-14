@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1053670324927",
+    "firebase_url": "https://polvorin-911cb-default-rtdb.firebaseio.com",
     "project_id": "polvorin-911cb",
     "storage_bucket": "polvorin-911cb.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1053670324927-idhbk5ivslntv0tlumpf554ta89r2vn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.itesm.Juanware.PolvorinApp",
+            "certificate_hash": "5413a018235a06a92d302c92cc0a2dfef98531ea"
+          }
+        },
         {
           "client_id": "1053670324927-4j713901blhivhqqaqm6bd5l0bqinboj.apps.googleusercontent.com",
           "client_type": 3
