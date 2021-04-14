@@ -17,7 +17,8 @@ class Login : AppCompatActivity() {
         println("PROBANDO ESCRITURA")
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("/autor")
-        myRef.setValue("Oscar Zuniga Lara A01654827")
+        myRef.setValue("Oscar Zuniga Lara A01654827,  PRUEBA 2")
+
         println("TERMINANDO ESCRITURA")
     }
 
