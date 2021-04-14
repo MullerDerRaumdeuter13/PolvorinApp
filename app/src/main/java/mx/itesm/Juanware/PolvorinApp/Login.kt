@@ -9,19 +9,21 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        probarEscritura()
+        //probarEscritura()
+
+
     }
-    private fun probarEscritura() {
+/*    private fun probarEscritura() {
         // Write a message to the database
         // Write a message to the database
         println("PROBANDO ESCRITURA")
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("/autor")
-        myRef.setValue("Oscar Zuniga Lara A01654827,  PRUEBA 2")
+        myRef.setValue("Otra mamada, 2")
 
 
 
         println("TERMINANDO ESCRITURAasdfasdfasdf")
-    }
+    }*/
 
 }
