@@ -7,10 +7,10 @@
     tools:context=".ParaPreguntones">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/doof"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:id="@+id/imageView2"
+        android:layout_width="365dp"
+        android:layout_height="589dp"
+        app:srcCompat="@drawable/juan"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="35dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
