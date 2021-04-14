@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1053670324927",
+    "project_id": "polvorin-911cb",
+    "storage_bucket": "polvorin-911cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053670324927:android:e5ce6a20c80c2f9387240a",
+        "android_client_info": {
+          "package_name": "mx.itesm.Juanware.PolvorinApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053670324927-4j713901blhivhqqaqm6bd5l0bqinboj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK636X4EP7LsnlDnIzsRipxZdqVC_67kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053670324927-4j713901blhivhqqaqm6bd5l0bqinboj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
