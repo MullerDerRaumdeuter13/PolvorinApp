@@ -10,18 +10,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-/*
+
+
+
+
 class Login : AppCompatActivity() {
+    private lateinit var mAuth: FirebaseAuth
+    private val RC_SIGN_IN = 200
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //probarEscritura()
-
-
+        mAuth = FirebaseAuth.getInstance()
     }
-*/
-/*    private fun probarEscritura() {
+
+/*
+    private fun probarEscritura() {
         // Write a message to the database
         // Write a message to the database
         println("PROBANDO ESCRITURA")
@@ -32,19 +36,8 @@ class Login : AppCompatActivity() {
 
 
         println("TERMINANDO ESCRITURAasdfasdfasdf")
-    }*//*
-
-
-}*/
-class Login : AppCompatActivity() {
-    private lateinit var mAuth: FirebaseAuth
-    private val RC_SIGN_IN = 200
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
-        mAuth = FirebaseAuth.getInstance()
     }
+*/
 
     override fun onStart() {
         super.onStart()
