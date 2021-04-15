@@ -18,4 +18,8 @@
         android:id="@+id/Notifications"
         android:icon="@android:drawable/ic_popup_reminder"
         android:title="@string/notificaciones" />
+    <item
+        android:id="@+id/About"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/acerca_de" />
 </menu>
