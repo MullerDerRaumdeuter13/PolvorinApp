@@ -12,4 +12,6 @@
     <string name="log_in_with_google">Log in with Google</string>
     <string name="log_in_with_e_mail">Log in with e-mail</string>
     <string name="sign_out">Sign Out</string>
+    <string name="crear_equipo">Crear Equipo</string>
+    <string name="crear_evento">Crear Evento</string>
 </resources>

@@ -14,6 +14,7 @@ class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+        configureInitFrag("Profile")
         configMenu()
     }
 
@@ -64,21 +65,31 @@ class MainMenu : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment,frag)
             .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
 
     }
 
     fun hacerLogOut(v: View){
         AuthUI.getInstance().signOut(this)
-        regresarLogin()
-    }
-
-    fun regresarLogin(){
         val regresarLogin = Intent(this, Login::class.java)
+        println("Sign out desde Menu")
         startActivity(regresarLogin)
         finish()
+        println("Salio")
     }
+
+    fun crearEquipo(v: View){
+        val intentCE = Intent(this, agregarEquipo::class.java)
+        startActivity(intentCE)
+        finish()
+    }
+
+    /*fun crearEvento(v: View){
+        val intentCE = Intent(this, agregarEvento::class.java)
+        startActivity(intentCE)
+        finish()
+    }*/
 
 
 }
