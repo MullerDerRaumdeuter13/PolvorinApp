@@ -70,9 +70,13 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun hacerLogOut(v: View){
+        AuthUI.getInstance().signOut(this)
+        regresarLogin()
+    }
+
+    fun regresarLogin(){
         val regresarLogin = Intent(this, Login::class.java)
         startActivity(regresarLogin)
-        AuthUI.getInstance().signOut(this)
         finish()
     }
 

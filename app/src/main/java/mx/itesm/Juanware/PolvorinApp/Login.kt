@@ -25,16 +25,13 @@ class Login : AppCompatActivity() {
         val usuario = mAuth.currentUser
         if (usuario != null) {
             //ya esta firmado
-            println("BIENVENIDO DE VUELTA: ${usuario.displayName}")
-            println("CORREO: ${usuario.email}")
-            println("ID: ${usuario.uid}")
 
             val intMainMenu = Intent(this, MainMenu::class.java)
             startActivity(intMainMenu)
             finish()
+            println("hay usuario")
         }else {
-
-            println("hacer login...")
+            println("No hay usuario")
         }
     }
 
@@ -63,14 +60,14 @@ class Login : AppCompatActivity() {
             val response = FirebaseAuth.getInstance().currentUser
             when(resultCode){
                 RESULT_OK -> {
-                    val usuario = FirebaseAuth.getInstance().currentUser
-                    println("Bienvenido: ${usuario.displayName}")
-                    println("Correo: ${usuario.email}")
-                    println("ID: ${usuario.uid}")
-                    println("Imagen: ${usuario.photoUrl}")
+                    //Para recibir usuario
+                    //val usuario = FirebaseAuth.getInstance().currentUser
+
                     val intMainMenu = Intent(this, MainMenu::class.java)
                     startActivity(intMainMenu)
+                    println("Estoy en AactivityResult")
                     finish()
+
                 }
                 RESULT_CANCELED -> {
                     println("Cancelado (back)")
