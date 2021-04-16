@@ -68,7 +68,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="mx.itesm.Juanware.PolvorinApp.Profile"
+            android:name="mx.itesm.Juanware.PolvorinApp.Fragbackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top" />
