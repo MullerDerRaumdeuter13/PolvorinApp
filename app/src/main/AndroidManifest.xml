@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Polvorin">
-        <activity android:name=".About"></activity>
+        <activity android:name=".eventosAct"></activity>
+        <activity android:name=".About" />
         <activity android:name=".MainMenu" />
         <activity android:name=".Login">
             <intent-filter>

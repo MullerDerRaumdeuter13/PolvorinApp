@@ -2,6 +2,7 @@ package mx.itesm.Juanware.PolvorinApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.replace
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 class MainMenu : AppCompatActivity() {
@@ -17,7 +18,13 @@ class MainMenu : AppCompatActivity() {
             when(item.itemId){
                 R.id.Profile -> {println("Perfil")}
                 R.id.About -> (println("Acerca de"))
-                R.id.Events -> {println("eventos")}
+                R.id.Events -> {
+                    println("eventos")
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.container, fragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+                }
                 R.id.Notifications -> (println("Notificaciones"))
                 R.id.Teams -> (println("Equipos"))
             }
