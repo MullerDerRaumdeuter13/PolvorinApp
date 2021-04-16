@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/NavMenu"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Button
+            android:id="@+id/btnCrearEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="crearEquipo"
+            android:text="@string/crear_equipo" />
+
+        <Button
+            android:id="@+id/btnCrearEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/crear_evento" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
@@ -28,13 +53,15 @@
         app:menu="@menu/lower_menu" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/NavMenu"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logout_btn">
@@ -43,28 +70,22 @@
             android:id="@+id/fragment"
             android:name="mx.itesm.Juanware.PolvorinApp.Profile"
             android:layout_width="match_parent"
-            android:layout_height="304dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_gravity="top" />
 
-            <Button
-                android:id="@+id/btnCrearEquipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:onClick="crearEquipo"
-                android:text="@string/crear_equipo" />
-
-            <Button
-                android:id="@+id/btnCrearEvento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="@string/crear_evento" />
-        </LinearLayout>
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/Welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Bienvenido"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/logout_btn"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
