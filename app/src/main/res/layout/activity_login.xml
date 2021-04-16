@@ -12,21 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="252dp"
         android:onClick="autenticar"
-        android:text="LOG-IN"
+        android:text="@string/log_in_with_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/logout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:onClick="hacerLogOut"
-        android:text="LOG-OUT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn"
-        app:layout_constraintVertical_bias="0.087" />
 </androidx.constraintlayout.widget.ConstraintLayout>
