@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/NavMenu"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Button
+            android:id="@+id/btnCrearEquipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="crearEquipo"
+            android:text="@string/crear_equipo" />
+
+        <Button
+            android:id="@+id/btnCrearEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/crear_evento" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
@@ -27,18 +52,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/lower_menu" />
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="mx.itesm.Juanware.PolvorinApp.Fragbackground"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/NavMenu"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.0"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout_btn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/logout_btn">
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="mx.itesm.Juanware.PolvorinApp.Profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Bienvenido"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
