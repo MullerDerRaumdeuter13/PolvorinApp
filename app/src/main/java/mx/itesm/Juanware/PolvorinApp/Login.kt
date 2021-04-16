@@ -7,11 +7,6 @@ import android.view.View
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-
-
-
-
 
 
 class Login : AppCompatActivity() {
@@ -48,7 +43,8 @@ class Login : AppCompatActivity() {
             println("BIENVENIDO DE VUELTA: ${usuario.displayName}")
             println("CORREO: ${usuario.email}")
             println("ID: ${usuario.uid}")
-            //Lanzar a la segunda pantalla
+            val intMainMenu = Intent(this, MainMenu::class.java)
+            startActivity(intMainMenu)
         }else {
             println("hacer login...")
         }
@@ -89,7 +85,8 @@ class Login : AppCompatActivity() {
                     println("Correo: ${usuario.email}")
                     println("ID: ${usuario.uid}")
                     println("Imagen: ${usuario.photoUrl}")
-                    //Lanzar la siguiente actividad.
+                    val intMainMenu = Intent(this, MainMenu::class.java)
+                    startActivity(intMainMenu)
                 }
                 RESULT_CANCELED -> {
                     println("Cancelado (back)")
