@@ -7,8 +7,8 @@
     tools:context=".eventosAct">
 
     <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="680dp"
+        android:layout_width="353dp"
+        android:layout_height="527dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

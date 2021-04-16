@@ -30,18 +30,25 @@ class eventosFrag : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        println("OnCreate")
 
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
 
-        grabarEnBD(1,  "Evento1")
-        grabarEnBD(2, "Evento2")
-        grabarEnBD(3, "Evento3")
-        grabarEnBD(4, "Evento4")
+        //grabarEnBD(1,  "Evento1")
+        //grabarEnBD(2, "Evento2")
+        //grabarEnBD(3, "Evento3")
+        //grabarEnBD(4, "Evento4")
 
         leerDatos()
         configurarRV()
+    }
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_eventos, container, false)
     }
 
 
@@ -91,19 +98,12 @@ class eventosFrag : Fragment() {
         println("setup RB")
         val layoutManager = LinearLayoutManager(this.context)
         val  adaptador = AdaptadorTarjetaEventos(arrEventos)
-        rvTarjetas.layoutManager = layoutManager
-        rvTarjetas.adapter=adaptador
+        recyclerViewTarjetas.layoutManager = layoutManager
+        recyclerViewTarjetas.adapter=adaptador
     }
 
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_eventos, container, false)
-    }
 
 
 }

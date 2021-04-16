@@ -2,6 +2,7 @@ package mx.itesm.Juanware.PolvorinApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -24,15 +25,17 @@ class eventosAct : AppCompatActivity() {
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
 
-        grabarEnBD(1,  "Evento1")
-        grabarEnBD(2, "Evento2")
-        grabarEnBD(3, "Evento3")
-        grabarEnBD(4, "Evento4")
+        //grabarEnBD(1,  "Evento1")
+        //grabarEnBD(2, "Evento2")
+        //grabarEnBD(3, "Evento3")
+        //grabarEnBD(4, "Evento4")
 
         leerDatos()
         configurarRV()
 
     }
+
+
 
 
     private  fun grabarEnBD(id: Int, nombreEvento: String){
@@ -47,7 +50,7 @@ class eventosAct : AppCompatActivity() {
 
 
     fun leerDatos(){
-
+        println("leyendo datos")
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Evento/")
 

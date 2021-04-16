@@ -50,7 +50,8 @@ class MainMenu : AppCompatActivity() {
 
                 R.id.Events -> {
                     println("eventos")
-                    configureInitFrag("Events")
+                    //configureInitFrag("Events")
+                    startEventosActivity()
                 }
                 R.id.Notifications -> {
                     println("Notificaciones")
@@ -73,7 +74,11 @@ class MainMenu : AppCompatActivity() {
             .addToBackStack(null)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
+    }
 
+    private fun startEventosActivity(){
+        val intent = Intent(this, eventosAct::class.java)
+        startActivity(intent)
     }
 
     fun hacerLogOut(v: View){
