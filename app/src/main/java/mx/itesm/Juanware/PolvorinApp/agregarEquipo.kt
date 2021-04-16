@@ -64,7 +64,7 @@ class agregarEquipo : AppCompatActivity() {
     fun creaEquipo(v: View){
         val key = DATABASE.push().key
         var nombreEquipo = editTextNombre.text.toString()
-        var integrantes = editTextIntegrantes.text.toString().toInt()
+        var integrantes = editTextIntegrantes.text.toString()
         var numeroTelefono = editTextTelefono.text.toString()
         var imageUrl = ""
 
@@ -73,7 +73,7 @@ class agregarEquipo : AppCompatActivity() {
 
             Toast.makeText(this, "Debes agregar un nombre.", Toast.LENGTH_SHORT).show()
 
-        }else if(integrantes <= 0 || integrantes > 15){
+        }else if(integrantes.toInt() <= 0 || integrantes.isNullOrEmpty()){
 
             Toast.makeText(this, "Número de integrantes no válido.", Toast.LENGTH_SHORT).show()
 
@@ -102,12 +102,13 @@ class agregarEquipo : AppCompatActivity() {
                             val downloadUrl = task.result
                             val url = downloadUrl.toString()
                             imageUrl = url
-                            DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes, numeroTelefono.toInt(), imageUrl))
+                            DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes.toInt(), numeroTelefono, imageUrl))
                         }
                     }
 
                 }else{ //no envian ninguna imagen
-                    DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes, numeroTelefono.toInt(), imageUrl))
+                    imageUrl = ""
+                    DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes.toInt(), numeroTelefono, imageUrl))
                 }
             }
         }
