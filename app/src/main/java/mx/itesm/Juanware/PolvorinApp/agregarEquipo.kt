@@ -1,6 +1,7 @@
 package mx.itesm.Juanware.PolvorinApp
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -62,6 +63,9 @@ class agregarEquipo : AppCompatActivity() {
     }
 
     fun creaEquipo(v: View){
+
+
+
         val key = DATABASE.push().key
         var nombreEquipo = editTextNombre.text.toString()
         var integrantes = editTextIntegrantes.text.toString()
@@ -82,7 +86,11 @@ class agregarEquipo : AppCompatActivity() {
             Toast.makeText(this, "Número telefónico no válido.", Toast.LENGTH_SHORT).show()
         }else{
             //Todas las condiciones fueron verificadas y se puede proceder a subir los datos
-
+            //TODO: arreglar el progress dialog
+            /*val progressDialog = ProgressDialog(this)
+            progressDialog.setTitle("Creando equipo...")
+            progressDialog.setMessage("Porfavor espera...")
+            progressDialog.show()*/
             //verifica que exista una llave para mandar la informacion.
             if(key != null){
                 //envia la imagen seleccionada si existe alguna
@@ -94,6 +102,7 @@ class agregarEquipo : AppCompatActivity() {
                         if(task.isSuccessful){
                             task.exception?.let{
                                 throw it
+
                             }
                         }
                         return@Continuation imagenEquipo.downloadUrl
@@ -103,12 +112,14 @@ class agregarEquipo : AppCompatActivity() {
                             val url = downloadUrl.toString()
                             imageUrl = url
                             DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes.toInt(), numeroTelefono, imageUrl))
+                            //progressDialog.dismiss()
                         }
                     }
 
                 }else{ //no envian ninguna imagen
                     imageUrl = ""
                     DATABASE.child(key).setValue(Equipo(nombreEquipo, integrantes.toInt(), numeroTelefono, imageUrl))
+                    //progressDialog.dismiss()
                 }
             }
         }
