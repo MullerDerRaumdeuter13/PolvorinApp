@@ -19,21 +19,6 @@ class Login : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
     }
 
-/*
-    private fun probarEscritura() {
-        // Write a message to the database
-        // Write a message to the database
-        println("PROBANDO ESCRITURA")
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("/autor")
-        myRef.setValue("Otra mamada, 2")
-
-
-
-        println("TERMINANDO ESCRITURAasdfasdfasdf")
-    }
-*/
-
     override fun onStart() {
         super.onStart()
 
@@ -46,6 +31,7 @@ class Login : AppCompatActivity() {
 
             val intMainMenu = Intent(this, MainMenu::class.java)
             startActivity(intMainMenu)
+            finish()
         }else {
 
             println("hacer login...")
@@ -56,9 +42,6 @@ class Login : AppCompatActivity() {
         autenticar()
     }
 
-    fun hacerLogOut(v: View){
-        AuthUI.getInstance().signOut(this)
-    }
 
     fun autenticar(){
         val proveedores = arrayListOf(
@@ -87,6 +70,7 @@ class Login : AppCompatActivity() {
                     println("Imagen: ${usuario.photoUrl}")
                     val intMainMenu = Intent(this, MainMenu::class.java)
                     startActivity(intMainMenu)
+                    finish()
                 }
                 RESULT_CANCELED -> {
                     println("Cancelado (back)")
