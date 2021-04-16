@@ -43,18 +43,18 @@ class Login : AppCompatActivity() {
         super.onStart()
 
         val usuario = mAuth.currentUser
-        if (usuario != null){
+        if (usuario != null) {
             //ya esta firmado
             println("BIENVENIDO DE VUELTA: ${usuario.displayName}")
             println("CORREO: ${usuario.email}")
             println("ID: ${usuario.uid}")
             //Lanzar a la segunda pantalla
-        }else {
+            val intAgregarEquipo = Intent(this, agregarEquipo::class.java)
+            startActivity(intAgregarEquipo)
+        } else {
             println("hacer login...")
         }
     }
-
-    //asdasd
 
     fun autenticar(v: View){
         autenticar()
@@ -90,6 +90,8 @@ class Login : AppCompatActivity() {
                     println("ID: ${usuario.uid}")
                     println("Imagen: ${usuario.photoUrl}")
                     //Lanzar la siguiente actividad.
+                    val intAgregarEquipo = Intent(this, agregarEquipo::class.java)
+                    startActivity(intAgregarEquipo)
                 }
                 RESULT_CANCELED -> {
                     println("Cancelado (back)")

@@ -20,9 +20,9 @@ import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_agregar_equipo.*
 
 
-val DATABASE = FirebaseDatabase.getInstance().reference.child("Equipos")
-class agregarEquipo : AppCompatActivity() {
 
+class agregarEquipo : AppCompatActivity() {
+    val DATABASE = FirebaseDatabase.getInstance().reference.child("Equipos")
     lateinit var STORAGE: StorageReference
     lateinit var imageViewPreview: ImageView
     lateinit var btnAccesoGaleria: Button
