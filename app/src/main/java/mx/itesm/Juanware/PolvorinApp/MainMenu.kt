@@ -75,7 +75,7 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun regresarLogin(){
-        val regresarLogin = Intent(this, Login::class.java)
+        val regresarLogin= Intent(this, Login::class.java)
         startActivity(regresarLogin)
         finish()
     }
