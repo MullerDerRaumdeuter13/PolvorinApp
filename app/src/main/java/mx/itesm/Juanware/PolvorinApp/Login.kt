@@ -38,19 +38,19 @@ class Login : AppCompatActivity() {
         super.onStart()
 
         val usuario = mAuth.currentUser
-        if (usuario != null){
+        if (usuario != null) {
             //ya esta firmado
             println("BIENVENIDO DE VUELTA: ${usuario.displayName}")
             println("CORREO: ${usuario.email}")
             println("ID: ${usuario.uid}")
+
             val intMainMenu = Intent(this, MainMenu::class.java)
             startActivity(intMainMenu)
         }else {
+
             println("hacer login...")
         }
     }
-
-    //asdasd
 
     fun autenticar(v: View){
         autenticar()
