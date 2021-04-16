@@ -77,8 +77,11 @@ class MainMenu : AppCompatActivity() {
     }
 
     private fun startEventosActivity(){
+
         val intent = Intent(this, eventosAct::class.java)
         startActivity(intent)
+
+        putFragment(FragmentEventos())
     }
 
     fun hacerLogOut(v: View){
