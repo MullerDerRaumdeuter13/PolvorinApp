@@ -111,6 +111,7 @@
                 android:layout_gravity="left"
                 android:layout_weight="1"
                 android:backgroundTint="@color/red"
+                android:onClick="cancelarCreacion"
                 android:text="CANCELAR"
                 android:textStyle="bold" />
 

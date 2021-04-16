@@ -59,7 +59,9 @@ class agregarEquipo : AppCompatActivity() {
 
     //Click listener para cancelar la creacion de equipos
     fun cancelarCreacion(v: View){
-        //TODO: Me falta arreglar esta
+        val regresarMenu = Intent(this, MainMenu::class.java)
+        startActivity(regresarMenu)
+        finish()
     }
 
     fun creaEquipo(v: View){
@@ -122,6 +124,10 @@ class agregarEquipo : AppCompatActivity() {
                     //progressDialog.dismiss()
                 }
             }
+
+            val regresarMenu = Intent(this, MainMenu::class.java)
+            startActivity(regresarMenu)
+            finish()
         }
     }
 }
