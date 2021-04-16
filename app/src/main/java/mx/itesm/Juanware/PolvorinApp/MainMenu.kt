@@ -3,18 +3,25 @@ package mx.itesm.Juanware.PolvorinApp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthAnonymousUpgradeException
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 class MainMenu : AppCompatActivity() {
+    private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         configMenu()
+
+        mAuth = FirebaseAuth.getInstance()
     }
 
 
@@ -70,8 +77,16 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun hacerLogOut(v: View){
+        val usuario = mAuth.currentUser
         AuthUI.getInstance().signOut(this)
-        regresarLogin()
+        Handler().postDelayed(
+                {
+                    regresarLogin()
+                }, 500
+        )
+
+
+
     }
 
     fun regresarLogin(){
