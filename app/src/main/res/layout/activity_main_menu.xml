@@ -75,17 +75,17 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/Welcome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="Bienvenido"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/logout_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
