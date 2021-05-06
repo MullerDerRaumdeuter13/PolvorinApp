@@ -28,7 +28,7 @@
             android:layout_height="452dp" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/crearEquipo_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="AgregarEquipo" />

@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.itesm.Juanware.PolvorinApp">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Polvorin">
-        <activity android:name=".agregarEquipo"></activity>
         <activity android:name=".eventosAct"></activity>
         <activity android:name=".About" />
         <activity android:name=".MainMenu" />

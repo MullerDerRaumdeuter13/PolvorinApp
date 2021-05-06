@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Polvorin">
-        <activity android:name=".agregarEquipo"></activity>
+<<<<<<< HEAD
         <activity android:name=".eventosAct"></activity>
+=======
+        <activity android:name=".agregarEquipo"></activity>
+>>>>>>> origin/sebastian
         <activity android:name=".About" />
         <activity android:name=".MainMenu" />
         <activity android:name=".Login">
