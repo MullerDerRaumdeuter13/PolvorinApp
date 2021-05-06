@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.renglon_evento.view.*
+import java.lang.StringBuilder
 
 class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerView.Adapter<AdaptadorEventos.VistaRenglonEventos>() {
 
@@ -30,8 +31,13 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
 
     class VistaRenglonEventos(val vistaRenglonEv: View): RecyclerView.ViewHolder(vistaRenglonEv) {
         fun set(evento: Evento){
-            vistaRenglonEv.tituloEvento.text = "Evento"
-            vistaRenglonEv.descripcionEvento.text = "Descripcio y/o Ubicacion del Evento"
+            var slideBody = StringBuilder()
+
+            slideBody.append("Descripcion: ${evento.descripcionEvento}\n" +
+                    "participantes: ${evento.participantes.size} / ${evento.maxParticipantes}")
+
+            vistaRenglonEv.tituloEvento.text = evento.nombreEvento
+            vistaRenglonEv.descripcionEvento.text = slideBody
         }
     }
 

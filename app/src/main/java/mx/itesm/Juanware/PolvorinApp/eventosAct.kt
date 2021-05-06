@@ -28,7 +28,7 @@ class eventosAct : AppCompatActivity() {
         //grabarEnBD(3, "Evento3")
         //grabarEnBD(4, "Evento4")
 
-        leerDatos()
+//        leerDatos()
         configurarRV()
 
     }
@@ -36,7 +36,7 @@ class eventosAct : AppCompatActivity() {
 
 
 
-    private  fun grabarEnBD(id: Int, nombreEvento: String){
+    /*private  fun grabarEnBD(id: Int, nombreEvento: String){
 
 
         val event = Evento(id, nombreEvento)
@@ -44,10 +44,10 @@ class eventosAct : AppCompatActivity() {
 
         val referencia = baseDatos.getReference("/Evento/$id")
         referencia.setValue(event)
-    }
+    }*/
 
 
-    fun leerDatos(){
+/*    fun leerDatos(){
         println("leyendo datos")
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Evento/")
@@ -76,7 +76,7 @@ class eventosAct : AppCompatActivity() {
                 println("ERROR EN BASE DE DATOS")
             }
         })
-    }
+    }*/
     private fun configurarRV(){
         println("setup RB")
         val layoutManager = LinearLayoutManager(this)

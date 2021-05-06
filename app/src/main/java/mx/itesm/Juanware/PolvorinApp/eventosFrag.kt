@@ -46,7 +46,7 @@ class eventosFrag : Fragment() {
     }
 
 
-    private fun grabarEnBD(id: Int, nombreEvento: String) {
+/*    private fun grabarEnBD(id: Int, nombreEvento: String) {
 
 
         val event = Evento(id, nombreEvento)
@@ -54,25 +54,41 @@ class eventosFrag : Fragment() {
 
         val referencia = baseDatos.getReference("/Evento/$id")
         referencia.setValue(event)
-    }
+    }*/
 
 
     fun leerDatos() {
 
         val baseDatos = FirebaseDatabase.getInstance()
-        val referencia = baseDatos.getReference("/Evento/")
+        val referencia = baseDatos.getReference("/Eventos/")
 
         referencia.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
                 for (registro in snapshot.children) {
-                    val idEvento = (registro.child("idEvento").value).toString().toInt()
                     val nombreEvento = (registro.child("nombreEvento").value).toString()
+                    val descripcionEvento = (registro.child("descripcionEvento").value).toString()
+                    val tipoEvento = (registro.child("tipoEvento").value).toString()
+                    val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
+                    val latEvento = (registro.child("latEvento").value).toString().toDouble()
+                    val longEvento = (registro.child("longEvento").value).toString().toDouble()
+                    val maxParticiantes = (registro.child("maxParticipantes").value).toString().toInt()
+                    for (entrada in registro.child("participantes").children){
+
+                    }
+                    val participantes = (registro.child("participantes").value)
+                    var participantesActuales = registro.child("participantes").childrenCount.toInt()
+
+                    println("participantes hasta ahora: $participantesActuales")
+                    println(participantes)
+
 
                     //println(idEvento)
                     //println(nombreEvento)
 
-                    val evento = Evento(idEvento, nombreEvento)
+                    val evento = Evento(nombreEvento, descripcionEvento,
+                            tipoEvento, idCreadorEvento, latEvento,
+                            longEvento, maxParticiantes, participantes as ArrayList<String>)
                     //println(evento.toString())
                     arrEventos.add(evento)
 
@@ -107,7 +123,7 @@ class eventosFrag : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_eventos, container, false)
         //println(rvTarjetas)
-        var rvTarjetas: RecyclerView = view.findViewById(R.id.rvTarjetas)
+        var rvTarjetas: RecyclerView = view.findViewById(R.id.recyclerViewTarjetas)
 
         //val llm :LinearLayout = view.findViewById(R.id.llm)
 

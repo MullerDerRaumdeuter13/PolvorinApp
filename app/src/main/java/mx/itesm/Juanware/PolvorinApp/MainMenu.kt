@@ -29,7 +29,7 @@ class MainMenu : AppCompatActivity() {
         when(fragment_str){
             "About"   -> putFragment(About())
             "Profile" -> putFragment(Profile())
-            "Events"  -> putFragment(FragmentEventos())
+            "Events"  -> putFragment(eventosFrag())
             "Notif"   -> putFragment(FragNotificaciones())
             "Equipos" -> putFragment(FragEquipo(this))
             else      -> putFragment(Profile())

@@ -29,7 +29,7 @@ class FragmentEventos : Fragment() {
         //grabarEnBD(3, "Evento3")
         //grabarEnBD(4, "Evento4")
 
-        leerDatos()
+        /*leerDatos()*/
         configurarRV()
     }
     override fun onCreateView(
@@ -40,7 +40,7 @@ class FragmentEventos : Fragment() {
         return inflater.inflate(R.layout.fragment_eventos, container, false)
     }
 
-    fun leerDatos(){
+/*    fun leerDatos(){
 
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Evento/")
@@ -55,9 +55,9 @@ class FragmentEventos : Fragment() {
                     //println(idEvento)
                     //println(nombreEvento)
 
-                    val evento = Evento(idEvento, nombreEvento)
+                    //val evento = Evento(idEvento, nombreEvento)
                     //println(evento.toString())
-                    arrEventos.add(evento)
+                    //arrEventos.add(evento)
 
 
                 }
@@ -69,7 +69,7 @@ class FragmentEventos : Fragment() {
                 println("ERROR EN BASE DE DATOS")
             }
         })
-    }
+    }*/
 
     private fun configurarRV(){
         println("setup RB")
