@@ -15,4 +15,5 @@
     <string name="sign_out">Sign Out</string>
     <string name="crear_equipo">Crear Equipo</string>
     <string name="crear_evento">Crear Evento</string>
+    <string name="about">About</string>
 </resources>

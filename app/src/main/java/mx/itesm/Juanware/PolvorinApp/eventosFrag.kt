@@ -41,7 +41,7 @@ class eventosFrag : Fragment() {
         //grabarEnBD(4, "Evento4")
 
         leerDatos()
-        configurarRV()
+        //configurarRV()
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

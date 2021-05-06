@@ -8,10 +8,10 @@
     tools:context=".aboutFrag">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/aboutjuanware"
+        android:id="@+id/imageView3"
+        android:layout_width="258dp"
+        android:layout_height="413dp"
+        android:src="@drawable/aboutjw2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

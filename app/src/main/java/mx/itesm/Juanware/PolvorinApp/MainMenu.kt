@@ -27,7 +27,7 @@ class MainMenu : AppCompatActivity() {
             "About"   -> putFragment(aboutFrag())
             //"Settings" -> putFragment(settingsFrag())
             "Events"  -> putFragment(eventosFrag())
-            else      -> putFragment(Profile())
+            else      -> putFragment(eventosFrag())
         }
     }
 
