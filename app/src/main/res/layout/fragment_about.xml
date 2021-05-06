@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="258dp"
-        android:layout_height="413dp"
+        android:layout_width="407dp"
+        android:layout_height="606dp"
+        android:scaleType="centerInside"
         android:src="@drawable/aboutjw2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
