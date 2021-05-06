@@ -37,29 +37,27 @@ class MainMenu : AppCompatActivity() {
     }
 
     private fun configMenu() {
+        NavMenu.itemIconTintList = null
         NavMenu.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.About -> {
                     configureInitFrag("About")
                 }
 
-                R.id.Profile -> {
-                    println("Perfil")
-                    configureInitFrag("Profile")
-                }
 
                 R.id.Events -> {
                     println("eventos")
                     //configureInitFrag("Events")
-                    startEventosActivity()
+                    TODO("Fragmento con RV de eventos, agregar boton ded crear evento")
+
+                    //startEventosActivity()
                 }
-                R.id.Notifications -> {
-                    println("Notificaciones")
-                    configureInitFrag("Notif")
-                }
-                R.id.Teams -> {
-                    println("Equipos")
-                    configureInitFrag("Equipos")
+
+                R.id.Settings -> {
+                    println("eventos")
+                    TODO("Fragmento o actividad de settings")
+                    //configureInitFrag("Events")
+                    //startEventosActivity()
                 }
             }
 
@@ -102,9 +100,7 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun crearEquipo(v: View){
-        val intentCE = Intent(this, agregarEquipo::class.java)
-        startActivity(intentCE)
-        finish()
+      println("creando equipo dada")
     }
 
     /*fun crearEvento(v: View){
