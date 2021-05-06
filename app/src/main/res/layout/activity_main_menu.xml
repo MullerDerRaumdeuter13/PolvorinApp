@@ -16,18 +16,11 @@
         tools:layout_editor_absoluteX="8dp">
 
         <Button
-            android:id="@+id/btnCrearEquipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:onClick="crearEquipo"
-            android:text="@string/crear_equipo" />
-
-        <Button
             android:id="@+id/btnCrearEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:onClick="crearEvento"
             android:text="@string/crear_evento" />
     </LinearLayout>
 
@@ -40,11 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
-
-    />
-
-    ]]>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/NavMenu"
