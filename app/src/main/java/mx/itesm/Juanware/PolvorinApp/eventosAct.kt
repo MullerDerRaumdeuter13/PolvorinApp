@@ -2,14 +2,12 @@ package mx.itesm.Juanware.PolvorinApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_eventos.*
-import kotlinx.android.synthetic.main.fragment_eventos.*
 
 class eventosAct : AppCompatActivity() {
 
@@ -82,7 +80,7 @@ class eventosAct : AppCompatActivity() {
     private fun configurarRV(){
         println("setup RB")
         val layoutManager = LinearLayoutManager(this)
-        val  adaptador = AdaptadorTarjetaEventos(arrEventos)
+        val  adaptador = AdaptadorEventos(arrEventos)
         rvTarjetas.layoutManager = layoutManager
         rvTarjetas.adapter=adaptador
     }

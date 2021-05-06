@@ -47,8 +47,7 @@ class MainMenu : AppCompatActivity() {
 
                 R.id.Events -> {
                     println("eventos")
-                    //configureInitFrag("Events")
-                    TODO("Fragmento con RV de eventos, agregar boton ded crear evento")
+                    configureInitFrag("Events")
 
                     //startEventosActivity()
                 }

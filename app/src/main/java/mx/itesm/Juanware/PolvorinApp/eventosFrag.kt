@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,7 +31,7 @@ class eventosFrag : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("OnCreate")
+
 
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
@@ -41,18 +42,11 @@ class eventosFrag : Fragment() {
         //grabarEnBD(4, "Evento4")
 
         leerDatos()
-        configurarRV()
-    }
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_eventos, container, false)
+
     }
 
 
-    private  fun grabarEnBD(id: Int, nombreEvento: String){
+    private fun grabarEnBD(id: Int, nombreEvento: String) {
 
 
         val event = Evento(id, nombreEvento)
@@ -63,15 +57,15 @@ class eventosFrag : Fragment() {
     }
 
 
-    fun leerDatos(){
+    fun leerDatos() {
 
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Evento/")
 
-        referencia.addListenerForSingleValueEvent(object: ValueEventListener {
+        referencia.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
-                for (registro in snapshot.children){
+                for (registro in snapshot.children) {
                     val idEvento = (registro.child("idEvento").value).toString().toInt()
                     val nombreEvento = (registro.child("nombreEvento").value).toString()
 
@@ -88,22 +82,38 @@ class eventosFrag : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
                 println("ERROR EN BASE DE DATOS")
             }
         })
     }
 
-    private fun configurarRV(){
+    private fun configurarRV(rvTarjetas: RecyclerView){
         println("setup RB")
         val layoutManager = LinearLayoutManager(this.context)
-        val  adaptador = AdaptadorTarjetaEventos(arrEventos)
-        recyclerViewTarjetas.layoutManager = layoutManager
-        recyclerViewTarjetas.adapter=adaptador
+        val  adaptador = AdaptadorEventos(arrEventos)
+        rvTarjetas.layoutManager = layoutManager
+        rvTarjetas.adapter=adaptador
     }
 
 
 
+    override fun onCreateView(
 
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        println("ONCREATEVIEW")
 
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_eventos, container, false)
+        //println(rvTarjetas)
+        var rvTarjetas: RecyclerView = view.findViewById(R.id.rvTarjetas)
+
+        //val llm :LinearLayout = view.findViewById(R.id.llm)
+
+        configurarRV(rvTarjetas)
+
+        return view
+    }
 }
+

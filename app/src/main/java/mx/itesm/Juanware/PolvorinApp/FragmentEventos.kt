@@ -76,7 +76,7 @@ class FragmentEventos : Fragment() {
 
 
         val layoutManager = LinearLayoutManager(this.context)
-        val  adaptador = AdaptadorTarjetaEventos(arrEventos)
+        val  adaptador = AdaptadorEventos(arrEventos)
 
 
         recyclerViewTarjetas.layoutManager = layoutManager
