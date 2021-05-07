@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.renglon_evento.view.*
 import java.lang.StringBuilder
 
 class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerView.Adapter<AdaptadorEventos.VistaRenglonEventos>() {
+    var listener:clickListenerEventos? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VistaRenglonEventos {
         val vista = LayoutInflater.from(parent.context)
@@ -25,6 +26,9 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
         val evento = arrEventos[position]
         holder.set(evento)
 
+        holder.vistaRenglonEv.setOnClickListener {
+            listener?.clicked(position)
+        }
 
     }
 
