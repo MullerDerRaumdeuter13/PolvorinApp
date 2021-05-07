@@ -79,9 +79,11 @@ class MainMenu : AppCompatActivity(), GPSListener {
                 }
 
                 R.id.Settings -> {
-                    println("settings")
-
-
+                    if(actual != "Settings"){
+                        val cambio = settingsFrag()
+                        putFragment(cambio)
+                        actual = "Settings"
+                    }
                 }
             }
 
