@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="Detalles del Evento"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,9 +22,9 @@
         android:id="@+id/linearLayout2"
         android:layout_width="376dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="120dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,13 +38,28 @@
             android:layout_height="wrap_content"
             android:text="Nombre del Evento"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/etBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripcion del evento" />
+
+        <TextView
+            android:id="@+id/tvParticipantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Participantes: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <ListView
+            android:id="@+id/lstParticipantes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
 
     </LinearLayout>
 

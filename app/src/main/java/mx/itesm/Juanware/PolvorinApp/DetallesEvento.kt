@@ -4,6 +4,8 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +51,16 @@ class DetallesEvento : AppCompatActivity() {
         etNombreEvento.text =detallesEvento.nombreEvento
         etBody.text = eventoBody
 
+        setupLista()
+
+    }
+
+    private fun setupLista() {
+        val arrParticipantes = detallesEvento.nombreParticipantes
+
+        lstParticipantes.choiceMode = ListView.CHOICE_MODE_SINGLE
+        val adaptador = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrParticipantes)
+        lstParticipantes.adapter = adaptador
     }
 
     fun entrarAEvennto(v: View){
