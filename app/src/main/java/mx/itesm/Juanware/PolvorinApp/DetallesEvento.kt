@@ -1,9 +1,11 @@
 package mx.itesm.Juanware.PolvorinApp
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_detalles_evento.*
@@ -15,15 +17,27 @@ class DetallesEvento : AppCompatActivity() {
     val mAuth = FirebaseAuth.getInstance()
     lateinit var detallesEvento: Evento
     val usuario = mAuth.currentUser
+    lateinit var builder: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalles_evento)
-
 
         val indexEvento = intent.getIntExtra(
             "EVENTO", 1
         )
         detallesEvento = arrEventos.get(indexEvento)
+
+
+
+
+
+        //Revisa si eres el creador del evento para darte oportunidad de borrar el evento
+
+        if(detallesEvento.idCreadorEvento != usuario.uid){
+            btnBorrar.visibility = View.INVISIBLE
+        }
+
+
         var eventoBody = StringBuilder()
         eventoBody.append("Descripcion: ${detallesEvento.descripcionEvento}\n" +
                 "participantes: ${detallesEvento.participantes.size} / ${detallesEvento.maxParticipantes}\n" +
@@ -52,14 +66,33 @@ class DetallesEvento : AppCompatActivity() {
 
     }
 
-    fun salirEvento(v: View){
-        if(detallesEvento.idCreadorEvento == usuario.uid){
-            Toast.makeText(this, "No te puedes salir de tu propio evento.", Toast.LENGTH_SHORT).show()
+    fun borrarEvento(v:View) {
+        val builder = AlertDialog.Builder(this)
+        //Crea una alerta para verificar que estas seguro que lo vas a borrar
+        builder.setTitle("¿Estas seguro?")
+        builder.setMessage("Esto borrará el evento y no hay vuelta atras.")
+        //borras los datos
+        builder.setPositiveButton("Si", { dialogInterface: DialogInterface, i: Int ->
+            DATABASE.child(detallesEvento.idEvento).removeValue()
+            Toast.makeText(this, "Se ha eliminado el evento", Toast.LENGTH_LONG).show()
+            finish()
+        })
+        //Cancelas la acción
+        builder.setNegativeButton("No", {dialogInterface: DialogInterface, i: Int -> })
+        //despliega la alerta
+        builder.show()
 
-        }else if(detallesEvento.participantes.contains(usuario.uid) == false){
+    }
+
+    fun salirEvento(v: View) {
+        if (detallesEvento.idCreadorEvento == usuario.uid) {
+            Toast.makeText(this, "No te puedes salir de tu propio evento.", Toast.LENGTH_SHORT)
+                .show()
+
+        } else if (detallesEvento.participantes.contains(usuario.uid) == false) {
             Toast.makeText(this, "Todavia no estás inscrito.", Toast.LENGTH_SHORT).show()
 
-        }else{
+        } else {
             detallesEvento.participantes.remove(usuario.uid)
             detallesEvento.nombreParticipantes.remove(usuario.displayName)
 

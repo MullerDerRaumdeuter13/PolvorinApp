@@ -11,4 +11,5 @@
     <color name= "btnBorrar_blue">#23529e</color>
     <color name="green">#46A346</color>
     <color name="red">#FF4141</color>
+    <color name="cancel_red">#C72020</color>
 </resources>
