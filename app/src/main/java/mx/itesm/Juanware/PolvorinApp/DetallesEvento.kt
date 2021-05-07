@@ -35,6 +35,9 @@ class DetallesEvento : AppCompatActivity() {
 
         if(detallesEvento.idCreadorEvento != usuario.uid){
             btnBorrar.visibility = View.INVISIBLE
+        }else if(detallesEvento.idCreadorEvento == usuario.uid){
+            btnDesincribir.visibility = View.INVISIBLE
+            btnAceptarOnClick.visibility = View.INVISIBLE
         }
 
 
@@ -49,10 +52,12 @@ class DetallesEvento : AppCompatActivity() {
     }
 
     fun entrarAEvennto(v: View){
-        if(detallesEvento.participantes.size > 10){
+        if(detallesEvento.participantes.size >= detallesEvento.maxParticipantes){
             Toast.makeText(this, "El evento ya está lleno.", Toast.LENGTH_SHORT).show()
         }else if(detallesEvento.idCreadorEvento == usuario.uid){
             Toast.makeText(this, "No puedes unirte a tu propio evento", Toast.LENGTH_SHORT).show()
+        }else if(detallesEvento.participantes.contains(usuario.uid)){
+            Toast.makeText(this, "Ya estas inscrito", Toast.LENGTH_SHORT).show()
         }else{
             //Actualiza la lista para subir y sobreescribir la vieja
             detallesEvento.participantes.add(usuario.uid)
