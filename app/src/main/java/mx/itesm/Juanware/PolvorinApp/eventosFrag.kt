@@ -1,6 +1,9 @@
 package mx.itesm.Juanware.PolvorinApp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 lateinit var arrEventos: MutableList<Evento>
 class eventosFrag : Fragment(), clickListenerEventos {
@@ -21,7 +25,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
     private lateinit var baseDatos: FirebaseDatabase
 
-
+    var rango = 3000000.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,44 +44,66 @@ class eventosFrag : Fragment(), clickListenerEventos {
     }
 
 
+    fun loadPreferences() {
+        val pref = activity?.getSharedPreferences("rango", Context.MODE_PRIVATE)
+        if (pref != null) {
+             this.rango = (pref.getInt("DIST_KEY",10) * 1000).toDouble()
+            println(rango.toString())
+        }
+    }
+
+
 
     fun leerDatos() {
 
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Eventos/")
 
-        referencia.addValueEventListener(object : ValueEventListener {
+        referencia.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
                 for (registro in snapshot.children) {
-                    //descarga de los datos de Realtime Database y agrega a un objeto Evento
-                    val nombreEvento = (registro.child("nombreEvento").value).toString()
-                    val descripcionEvento = (registro.child("descripcionEvento").value).toString()
-                    val tipoEvento = (registro.child("tipoEvento").value).toString()
-                    val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
+                    val dist = FloatArray(3)
+
                     val latEvento = (registro.child("latEvento").value).toString().toDouble()
                     val longEvento = (registro.child("longEvento").value).toString().toDouble()
-                    val maxParticiantes = (registro.child("maxParticipantes").value).toString().toInt()
-                    val participantes = (registro.child("participantes").value)
-                    val nombreParticipantes = (registro.child("nombreParticipantes").value)
-                    val idEvento = (registro.child("idEvento").value).toString()
+                    Location.distanceBetween(latitud, longitude,latEvento, longEvento, dist)
+
+                    println("DISTANCIA" + dist[0].toString())
+
+                    if (dist[0] <= rango) {
+
+                        val nombreEvento = (registro.child("nombreEvento").value).toString()
+                        val descripcionEvento =
+                            (registro.child("descripcionEvento").value).toString()
+                        val tipoEvento = (registro.child("tipoEvento").value).toString()
+                        val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
+                        //val latEvento = (registro.child("latEvento").value).toString().toDouble()
+                        //val longEvento = (registro.child("longEvento").value).toString().toDouble()
+                        val maxParticiantes =
+                            (registro.child("maxParticipantes").value).toString().toInt()
+                        val participantes = (registro.child("participantes").value)
+                        val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                        val idEvento = (registro.child("idEvento").value).toString()
+
+                        var participantesActuales =
+                            registro.child("participantes").childrenCount.toInt()
+
+                        println("participantes hasta ahora: $participantesActuales")
+                        println(participantes)
 
 
+                        //println(idEvento)
+                        //println(nombreEvento)
 
-                    var participantesActuales = registro.child("participantes").childrenCount.toInt()
-
-                    println("participantes hasta ahora: $participantesActuales")
-                    println(participantes)
-
-
-                    //println(idEvento)
-                    //println(nombreEvento)
-
-                    val evento = Evento(nombreEvento, descripcionEvento,
+                        val evento = Evento(
+                            nombreEvento, descripcionEvento,
                             tipoEvento, idCreadorEvento, latEvento,
                             longEvento, maxParticiantes, participantes as ArrayList<String>,
-                            idEvento, nombreParticipantes as ArrayList<String>)
-                    arrEventos.add(evento)
+                            idEvento, nombreParticipantes as ArrayList<String>
+                        )
+                        arrEventos.add(evento)
+                    }
 
 
                 }
@@ -89,6 +115,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
             }
         })
     }
+
 
     private fun configurarRV(rvTarjetas: RecyclerView){
         println("setup RB")
@@ -121,8 +148,9 @@ class eventosFrag : Fragment(), clickListenerEventos {
         var rvTarjetas: RecyclerView = view.findViewById(R.id.recyclerViewTarjetas)
 
 
-        configurarRV(rvTarjetas)
+        loadPreferences()
 
+        configurarRV(rvTarjetas)
         return view
     }
 
