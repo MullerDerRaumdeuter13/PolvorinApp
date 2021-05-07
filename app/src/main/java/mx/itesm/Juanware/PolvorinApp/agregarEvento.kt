@@ -44,10 +44,12 @@ class agregarEvento : AppCompatActivity(){
             if (key != null){
                 val temp = ArrayList<String>()
                 temp.add(idCreadorEvento)
+                val nombreParticipantes = ArrayList<String>()
+                nombreParticipantes.add(usuario.displayName)
 
                 DATABASE.child(key).setValue(Evento(nombreEvento,
                         descripcionEvento, tipoEvento, idCreadorEvento,
-                        latEvento, longEvento, maxParticipantes.toInt(), temp
+                        latEvento, longEvento, maxParticipantes.toInt(), temp, key, nombreParticipantes
                 ))
             }
         }

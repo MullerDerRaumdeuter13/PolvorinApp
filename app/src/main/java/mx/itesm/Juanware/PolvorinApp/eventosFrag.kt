@@ -15,19 +15,12 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-/**
- * A simple [Fragment] subclass.
- * Use the [eventosFrag.newInstance] factory method to
- * create an instance of this fragment.
- */
+lateinit var arrEventos: MutableList<Evento>
 class eventosFrag : Fragment(), clickListenerEventos {
 
 
     private lateinit var baseDatos: FirebaseDatabase
-    lateinit var arrEventos: MutableList<Evento>
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,16 +40,6 @@ class eventosFrag : Fragment(), clickListenerEventos {
     }
 
 
-/*    private fun grabarEnBD(id: Int, nombreEvento: String) {
-
-
-        val event = Evento(id, nombreEvento)
-
-
-        val referencia = baseDatos.getReference("/Evento/$id")
-        referencia.setValue(event)
-    }*/
-
 
     fun leerDatos() {
 
@@ -67,6 +50,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
                 for (registro in snapshot.children) {
+                    //descarga de los datos de Realtime Database y agrega a un objeto Evento
                     val nombreEvento = (registro.child("nombreEvento").value).toString()
                     val descripcionEvento = (registro.child("descripcionEvento").value).toString()
                     val tipoEvento = (registro.child("tipoEvento").value).toString()
@@ -74,10 +58,12 @@ class eventosFrag : Fragment(), clickListenerEventos {
                     val latEvento = (registro.child("latEvento").value).toString().toDouble()
                     val longEvento = (registro.child("longEvento").value).toString().toDouble()
                     val maxParticiantes = (registro.child("maxParticipantes").value).toString().toInt()
-                    for (entrada in registro.child("participantes").children){
-
-                    }
                     val participantes = (registro.child("participantes").value)
+                    val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                    val idEvento = (registro.child("idEvento").value).toString()
+
+
+
                     var participantesActuales = registro.child("participantes").childrenCount.toInt()
 
                     println("participantes hasta ahora: $participantesActuales")
@@ -89,13 +75,13 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
                     val evento = Evento(nombreEvento, descripcionEvento,
                             tipoEvento, idCreadorEvento, latEvento,
-                            longEvento, maxParticiantes, participantes as ArrayList<String>)
-                    //println(evento.toString())
+                            longEvento, maxParticiantes, participantes as ArrayList<String>,
+                            idEvento, nombreParticipantes as ArrayList<String>)
                     arrEventos.add(evento)
 
 
                 }
-                println(arrEventos)
+//                println(arrEventos)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -132,10 +118,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_eventos, container, false)
-        //println(rvTarjetas)
         var rvTarjetas: RecyclerView = view.findViewById(R.id.recyclerViewTarjetas)
 
-        //val llm :LinearLayout = view.findViewById(R.id.llm)
 
         configurarRV(rvTarjetas)
 
@@ -146,6 +130,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
         println("Click en un evento ${position}")
         activity?.let {
             val intent = Intent(it, DetallesEvento::class.java)
+            intent.putExtra("EVENTO", position)
             it.startActivity(intent)
         }
     }

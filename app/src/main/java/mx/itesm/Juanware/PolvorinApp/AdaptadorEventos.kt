@@ -38,7 +38,8 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
             var slideBody = StringBuilder()
 
             slideBody.append("Descripcion: ${evento.descripcionEvento}\n" +
-                    "participantes: ${evento.participantes.size} / ${evento.maxParticipantes}")
+                    "participantes: ${evento.participantes.size} / ${evento.maxParticipantes}\n" +
+                    "Creador del Evento: ${evento.nombreParticipantes.first()}")
 
             vistaRenglonEv.tituloEvento.text = evento.nombreEvento
             vistaRenglonEv.descripcionEvento.text = slideBody
