@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
+import com.squareup.picasso.Picasso
 
 class MainMenu : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -19,6 +20,10 @@ class MainMenu : AppCompatActivity() {
         configMenu()
 
         mAuth = FirebaseAuth.getInstance()
+        val usuario = mAuth.currentUser
+        tvNombre.text = usuario.displayName
+        Picasso.get().load(usuario.photoUrl).into(ivUsuario)
+
     }
 
 
