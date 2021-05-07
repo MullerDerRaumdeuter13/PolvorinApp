@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Polvorin">
-        <activity android:name=".agregarEvento"></activity>
+        <activity android:name=".DetallesEvento"></activity>
+        <activity android:name=".agregarEvento" />
         <activity android:name=".eventosAct" />
         <activity android:name=".aboutFrag" />
         <activity android:name=".MainMenu" />

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_eventos.*
  * Use the [eventosFrag.newInstance] factory method to
  * create an instance of this fragment.
  */
-class eventosFrag : Fragment() {
+class eventosFrag : Fragment(), clickListenerEventos {
 
 
     private lateinit var baseDatos: FirebaseDatabase
@@ -110,6 +110,7 @@ class eventosFrag : Fragment() {
         val  adaptador = AdaptadorEventos(arrEventos)
         rvTarjetas.layoutManager = layoutManager
         rvTarjetas.adapter=adaptador
+        adaptador.listener = this
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -139,6 +140,14 @@ class eventosFrag : Fragment() {
         configurarRV(rvTarjetas)
 
         return view
+    }
+
+    override fun clicked(position: Int) {
+        println("Click en un evento ${position}")
+        activity?.let {
+            val intent = Intent(it, DetallesEvento::class.java)
+            it.startActivity(intent)
+        }
     }
 }
 
