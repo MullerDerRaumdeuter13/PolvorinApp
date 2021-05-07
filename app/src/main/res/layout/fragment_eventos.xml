@@ -21,20 +21,37 @@
             android:layout_height="wrap_content"
             android:text="Buscar" />
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="369dp"
-            android:layout_height="53dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </SearchView>
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10">
+
+            </SearchView>
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="3"
+                android:backgroundTint="@color/green"
+                android:text="Crear Evento" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTarjetas"
-            android:layout_width="398dp"
-            android:layout_height="486dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:listitem="@layout/renglon_evento">
 
         </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ class MainMenu : AppCompatActivity() {
 
     private fun configureInitFrag(fragment_str : String) {
         when(fragment_str){
-            "About"   -> putFragment(About())
+            "About"   -> putFragment(aboutFrag())
             //"Settings" -> putFragment(settingsFrag())
             "Events"  -> putFragment(eventosFrag())
             else      -> putFragment(eventosFrag())
