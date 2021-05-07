@@ -1,5 +1,6 @@
 package mx.itesm.Juanware.PolvorinApp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -111,7 +112,15 @@ class eventosFrag : Fragment() {
         rvTarjetas.adapter=adaptador
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        crearEventobutton.setOnClickListener{
+            activity?.let {
+                val intent = Intent(it, agregarEvento::class.java)
+                it.startActivity(intent)
+            }
+        }
+    }
 
     override fun onCreateView(
 
@@ -121,7 +130,7 @@ class eventosFrag : Fragment() {
         println("ONCREATEVIEW")
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_eventos, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_eventos, container, false)
         //println(rvTarjetas)
         var rvTarjetas: RecyclerView = view.findViewById(R.id.recyclerViewTarjetas)
 
