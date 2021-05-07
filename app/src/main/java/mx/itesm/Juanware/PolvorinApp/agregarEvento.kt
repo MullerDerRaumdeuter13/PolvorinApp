@@ -38,7 +38,7 @@ class agregarEvento : AppCompatActivity(){
             Toast.makeText(this, "Debes agregar un nombre al Evento.", Toast.LENGTH_SHORT).show()
         }else if(tipoEvento.isNullOrEmpty()){
             Toast.makeText(this, "El tipo de evento no puede estar vacio", Toast.LENGTH_SHORT).show()
-        }else if(maxParticipantes.isNullOrEmpty() || maxParticipantes.toInt() < 1){
+        }else if(maxParticipantes.isNullOrEmpty() || maxParticipantes.toInt() <= 1){
             Toast.makeText(this, "Numero de integrantes no válido.", Toast.LENGTH_SHORT).show()
         }else{
             if (key != null){
@@ -52,15 +52,14 @@ class agregarEvento : AppCompatActivity(){
             }
         }
         Toast.makeText(this, "Evento creado correctamente.", Toast.LENGTH_SHORT).show()
-        val intRegresar = Intent(this, MainMenu::class.java)
-        startActivity(intRegresar)
+        //val intRegresar = Intent(this, MainMenu::class.java)
+        //startActivity(intRegresar)
         finish()
 
     }
 
     fun cancelar(v:View){
-        val intRegresar = Intent(this, MainMenu::class.java)
-        startActivity(intRegresar)
+
         finish()
     }
 

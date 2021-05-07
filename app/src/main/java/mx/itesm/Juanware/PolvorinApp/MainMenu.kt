@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
+import com.squareup.picasso.Picasso
 
 var latitud = 0.0
 var longitude = 0.0
@@ -35,6 +36,10 @@ class MainMenu : AppCompatActivity(), GPSListener {
         configMenu()
 
         mAuth = FirebaseAuth.getInstance()
+        val usuario = mAuth.currentUser
+        tvNombre.text = usuario.displayName
+        Picasso.get().load(usuario.photoUrl).into(ivUsuario)
+
     }
 
     override fun onStart() {
