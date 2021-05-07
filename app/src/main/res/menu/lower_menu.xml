@@ -11,7 +11,7 @@
             android:checked="false"/>
         <item
             android:id="@+id/Settings"
-            android:icon="@drawable/info"
+            android:icon="@drawable/config"
             android:title="@string/config" />
         <item
             android:id="@+id/About"
