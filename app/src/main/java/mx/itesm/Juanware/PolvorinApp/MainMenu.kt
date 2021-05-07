@@ -88,11 +88,6 @@ class MainMenu : AppCompatActivity() {
         println("Salio")
     }
 
-    fun crearEvento(v: View){
-        val intentCE = Intent(this, agregarEvento::class.java)
-        startActivity(intentCE)
-        finish()
-    }
 
 
 }
