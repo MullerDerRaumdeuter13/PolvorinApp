@@ -37,8 +37,8 @@ class DetallesEvento : AppCompatActivity() {
             btnBorrar.visibility = View.INVISIBLE
         }
         if(detallesEvento.idCreadorEvento == usuario.uid){
-            btndesinsc.visibility = View.INVISIBLE
-            btninsc.visibility = View.INVISIBLE
+            btnAceptarOnClick.visibility = View.INVISIBLE
+            btnDesincribir.visibility = View.INVISIBLE
         }
 
 
