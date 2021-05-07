@@ -1,6 +1,7 @@
 package mx.itesm.Juanware.PolvorinApp
 
 import android.content.Intent
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,10 +9,13 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_agregar_evento.*
+import kotlinx.android.synthetic.main.activity_main_menu.*
 
-class agregarEvento : AppCompatActivity() {
+class agregarEvento : AppCompatActivity(){
     val DATABASE = FirebaseDatabase.getInstance().reference.child("Eventos")
     val mAuth = FirebaseAuth.getInstance()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,8 +30,8 @@ class agregarEvento : AppCompatActivity() {
         var descripcionEvento = etDescription.text.toString()
         var tipoEvento = etTipo.text.toString()
         var idCreadorEvento = usuario.uid
-        var latEvento = 0.0//posicion.latitude.toDouble()
-        var longEvento = 0.0//posicion.longitude.toDouble()
+        var latEvento = latitud
+        var longEvento = longitude
         var maxParticipantes = etMaxParticipantes.text.toString()
 
         if(nombreEvento.isNullOrEmpty()){
