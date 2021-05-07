@@ -36,6 +36,10 @@ class DetallesEvento : AppCompatActivity() {
         if(detallesEvento.idCreadorEvento != usuario.uid){
             btnBorrar.visibility = View.INVISIBLE
         }
+        if(detallesEvento.idCreadorEvento == usuario.uid){
+            btndesinsc.visibility = View.INVISIBLE
+            btninsc.visibility = View.INVISIBLE
+        }
 
 
         var eventoBody = StringBuilder()

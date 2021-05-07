@@ -25,9 +25,9 @@
     <string name="cancelar">CANCELAR</string>
     <string name="aceptar">ACEPTAR</string>
     <string name="crear_evento3">Crear Evento</string>
-    <string name="detalles_del_evento">Detalles del Evento</string>
+    <string name="detalles_del_evento1">Detalles del Evento</string>
     <string name="nombre_de_evento">Nombre del Evento</string>
-    <string name="descripcion_del_evento">Descripcion del evento</string>
+    <string name="descripcion_del_evento2">Descripcion del evento</string>
     <string name="desinscribirme">Desinscribirme</string>
     <string name="inscribirme">Inscribirme</string>
     <string name="logo_juanware">Logo JUANware</string>
@@ -37,4 +37,10 @@
     <string name="profilepic">ProfilePic</string>
     <string name="buscar">Buscar</string>
     <string name="crear_evento">Crear Evento</string>
+    <string name="detalles_del_evento">Detalles del Evento</string>
+    <string name="nombre_del_eventoooo">Nombre del Evento</string>
+    <string name="descripcion_del_evento">Descripcion del evento</string>
+    <string name="desinscribirmeee">DESINSCRIBIRME</string>
+    <string name="inscribirmeee">INSCRIBIRME</string>
+    <string name="borrar">BORRAR</string>
 </resources>

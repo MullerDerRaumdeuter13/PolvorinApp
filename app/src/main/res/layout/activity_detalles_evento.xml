@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Detalles del Evento"
+        android:text="@string/detalles_del_evento"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
             android:id="@+id/etNombreEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre del Evento"
+            android:text="@string/nombre_del_eventoooo"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -44,7 +44,7 @@
             android:id="@+id/etBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripcion del evento" />
+            android:text="@string/descripcion_del_evento" />
 
     </LinearLayout>
 
@@ -67,11 +67,12 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btndesinsc"
                 android:layout_width="182dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="salirEvento"
-                android:text="DESINSCRIBIRME" />
+                android:text="@string/desinscribirmeee" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -79,13 +80,13 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btninsc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/green"
-                android:onClick="entrarAEvennto"
-                android:text="INSCRIBIRME" />
+                android:onClick="entrarEvento"
+                android:text="@string/inscribirmeee" />
         </LinearLayout>
 
         <Button
@@ -95,7 +96,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/cancel_red"
             android:onClick="borrarEvento"
-            android:text="BORRAR" />
+            android:text="@string/borrar" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
