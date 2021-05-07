@@ -149,5 +149,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
             it.startActivity(intent)
         }
     }
+    override fun onStop(){
+        super.onStop()
+    }
 }
 

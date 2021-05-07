@@ -26,13 +26,13 @@ var longitude = 0.0
 class MainMenu : AppCompatActivity(), GPSListener {
     private val CODIGO_PERMISO_GPS: Int = 100
     private var gps: GPS? = null
-
-
+    lateinit var actual:String
 
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+        configureInitFrag()
         configMenu()
 
         mAuth = FirebaseAuth.getInstance()
@@ -49,13 +49,11 @@ class MainMenu : AppCompatActivity(), GPSListener {
     }
 
 
-    private fun configureInitFrag(fragment_str : String) {
-        when(fragment_str){
-            "About"   -> putFragment(aboutFrag())
-            //"Settings" -> putFragment(settingsFrag())
-            "Events"  -> putFragment(eventosFrag())
-            else      -> putFragment(eventosFrag())
-        }
+    private fun configureInitFrag() {
+        val home = eventosFrag()
+        putFragment(home)
+        actual = "Eventos"
+
     }
 
     private fun configMenu() {
@@ -63,15 +61,21 @@ class MainMenu : AppCompatActivity(), GPSListener {
         NavMenu.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.About -> {
-                    configureInitFrag("About")
+                    if(actual != "About"){
+                    val cambio = aboutFrag()
+                    putFragment(cambio)
+                    actual = "About"
+                    }
                 }
 
 
                 R.id.Events -> {
-                    println("eventos")
-                    configureInitFrag("Events")
+                    if(actual != "Eventos"){
+                    val cambio = eventosFrag()
+                    putFragment(cambio)
+                    actual = "Eventos"
+                    }
 
-                    //startEventosActivity()
                 }
 
                 R.id.Settings -> {
@@ -88,11 +92,13 @@ class MainMenu : AppCompatActivity(), GPSListener {
 
     private fun putFragment(frag: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment,frag)
+            .replace(R.id.fraglayout,frag)
             .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
     }
+
+
 
 
     fun hacerLogOut(v: View){
@@ -103,8 +109,6 @@ class MainMenu : AppCompatActivity(), GPSListener {
                     regresarLogin()
                 }, 500
         )
-
-
 
     }
 
@@ -187,15 +191,11 @@ class MainMenu : AppCompatActivity(), GPSListener {
                 dialogo.show()
             }
         }
-
-
     }
-
     override fun actualizarPosicion(posicion: Location) {
         latitud = posicion.latitude
         longitude = posicion.longitude
 
     }
-
 
 }
