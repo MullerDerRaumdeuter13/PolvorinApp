@@ -45,7 +45,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Eventos/")
 
-        referencia.addListenerForSingleValueEvent(object : ValueEventListener {
+        referencia.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
                 for (registro in snapshot.children) {

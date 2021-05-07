@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/detalles_del_evento"
+        android:text="Detalles del Evento"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,13 +19,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="376dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="120dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
@@ -34,7 +36,7 @@
             android:id="@+id/etNombreEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nombre_de_evento"
+            android:text="Nombre del Evento"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -42,41 +44,58 @@
             android:id="@+id/etBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/descripcion_del_evento" />
+            android:text="Descripcion del evento" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="salirEvento"
+                android:text="DESINSCRIBIRME" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green"
+                android:onClick="entrarAEvennto"
+                android:text="INSCRIBIRME" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="137dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="salirEvento"
-            android:text="@string/desinscribirme" />
-
-        <Space
+            android:id="@+id/btnBorrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/buttonInsc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="entrarEvento"
-            android:text="@string/inscribirme" />
+            android:layout_gravity="center"
+            android:backgroundTint="@color/cancel_red"
+            android:onClick="borrarEvento"
+            android:text="BORRAR" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
