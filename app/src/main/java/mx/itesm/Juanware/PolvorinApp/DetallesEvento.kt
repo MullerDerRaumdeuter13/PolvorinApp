@@ -34,7 +34,7 @@ class DetallesEvento : AppCompatActivity() {
 
     }
 
-    fun entrarAEvennto(v: View){
+    fun entrarEvento(v: View){
         if(detallesEvento.participantes.size > 10){
             Toast.makeText(this, "El evento ya está lleno.", Toast.LENGTH_SHORT).show()
         }else if(detallesEvento.idCreadorEvento == usuario.uid){

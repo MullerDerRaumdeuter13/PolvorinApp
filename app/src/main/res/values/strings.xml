@@ -8,12 +8,33 @@
     <string name="acerca_de">Acerca De</string>
     <string name="polvorin">Polvorin</string>
     <string name="config">Config</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_in_with_google">Log in with Google</string>
     <string name="log_in_with_e_mail">Log in with e-mail</string>
     <string name="sign_out">Sign Out</string>
     <string name="crear_equipo">Crear Equipo</string>
-    <string name="crear_evento">Crear Evento</string>
+    <string name="crear_evento2">Crear Evento</string>
     <string name="about">About</string>
+    <string name="descripcion_del_evento_opcional">Descripcion del Evento: (opcional)</string>
+    <string name="evento">Evento</string>
+    <string name="nombre_del_evento">Nombre del Evento:</string>
+    <string name="tipo_de_evento">Tipo de Evento:</string>
+    <string name="partido_de_soccer_juego_en_linea_etc">Partido de soccer, juego en linea, etc.</string>
+    <string name="participantes_totales_incluyendote">Participantes totales: (incluyendote)</string>
+    <string name="num">Num.</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="crear_evento3">Crear Evento</string>
+    <string name="detalles_del_evento">Detalles del Evento</string>
+    <string name="nombre_de_evento">Nombre del Evento</string>
+    <string name="descripcion_del_evento">Descripcion del evento</string>
+    <string name="desinscribirme">Desinscribirme</string>
+    <string name="inscribirme">Inscribirme</string>
+    <string name="logo_juanware">Logo JUANware</string>
+    <string name="acercaaaa_de">Acerca de</string>
+    <string name="textview">TextView</string>
+    <string name="logout">logout</string>
+    <string name="profilepic">ProfilePic</string>
+    <string name="buscar">Buscar</string>
+    <string name="crear_evento">Crear Evento</string>
 </resources>

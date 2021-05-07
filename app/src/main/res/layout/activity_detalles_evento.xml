@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Detalles del Evento"
+        android:text="@string/detalles_del_evento"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
             android:id="@+id/etNombreEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre del Evento"
+            android:text="@string/nombre_de_evento"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -42,7 +42,7 @@
             android:id="@+id/etBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripcion del evento" />
+            android:text="@string/descripcion_del_evento" />
 
     </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="salirEvento"
-            android:text="Desinscribirme" />
+            android:text="@string/desinscribirme" />
 
         <Space
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="entrarAEvennto"
-            android:text="Inscribirme" />
+            android:onClick="entrarEvento"
+            android:text="@string/inscribirme" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
