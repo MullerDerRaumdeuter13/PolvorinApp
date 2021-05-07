@@ -19,9 +19,14 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
+var latitud = 0.0
+var longitude = 0.0
+
 class MainMenu : AppCompatActivity(), GPSListener {
     private val CODIGO_PERMISO_GPS: Int = 100
     private var gps: GPS? = null
+
+
 
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -187,7 +192,9 @@ class MainMenu : AppCompatActivity(), GPSListener {
     }
 
     override fun actualizarPosicion(posicion: Location) {
-        println("${posicion.latitude}, ${posicion.longitude}")
+        latitud = posicion.latitude
+        longitude = posicion.longitude
+
     }
 
 
