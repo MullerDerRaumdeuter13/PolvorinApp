@@ -23,4 +23,8 @@ class aboutFrag : Fragment() {
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
+    override fun onStop(){
+        super.onStop()
+    }
+
 }
