@@ -1,6 +1,8 @@
 package mx.itesm.Juanware.PolvorinApp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_eventos.*
  */
 class eventosFrag : Fragment() {
 
+    var rango = 3000000.0;
 
     private lateinit var baseDatos: FirebaseDatabase
     lateinit var arrEventos: MutableList<Evento>
@@ -57,14 +61,20 @@ class eventosFrag : Fragment() {
         val referencia = baseDatos.getReference("/Evento/$id")
         referencia.setValue(event)
     }*/
+    fun loadPreferences() {
+        val pref = activity?.getSharedPreferences("rango", Context.MODE_PRIVATE)
+        if (pref != null) {
+             this.rango = (pref.getInt("DIST_KEY",10) * 1000).toDouble()
+            println(rango.toString())
+        }
+    }
+
 
 
     fun leerDatos() {
 
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Eventos/")
-
-        val rango = 3000000.0;
 
 
         referencia.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -155,9 +165,9 @@ class eventosFrag : Fragment() {
         var rvTarjetas: RecyclerView = view.findViewById(R.id.recyclerViewTarjetas)
 
         //val llm :LinearLayout = view.findViewById(R.id.llm)
+        loadPreferences()
 
         configurarRV(rvTarjetas)
-
         return view
     }
 }

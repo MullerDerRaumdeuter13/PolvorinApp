@@ -47,7 +47,7 @@ class MainMenu : AppCompatActivity(), GPSListener {
     private fun configureInitFrag(fragment_str : String) {
         when(fragment_str){
             "About"   -> putFragment(aboutFrag())
-            //"Settings" -> putFragment(settingsFrag())
+            "Settings" -> putFragment(settingsFrag())
             "Events"  -> putFragment(eventosFrag())
             else      -> putFragment(eventosFrag())
         }
@@ -71,7 +71,7 @@ class MainMenu : AppCompatActivity(), GPSListener {
 
                 R.id.Settings -> {
                     println("settings")
-                    //configureInitFrag("Events")
+                    configureInitFrag("Settings")
                     //startEventosActivity()
                 }
             }
