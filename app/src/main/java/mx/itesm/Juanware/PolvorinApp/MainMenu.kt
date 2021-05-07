@@ -80,8 +80,8 @@ class MainMenu : AppCompatActivity(), GPSListener {
 
                 R.id.Settings -> {
                     println("settings")
-                    //configureInitFrag("Events")
-                    //startEventosActivity()
+
+
                 }
             }
 
@@ -93,12 +93,9 @@ class MainMenu : AppCompatActivity(), GPSListener {
     private fun putFragment(frag: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fraglayout,frag)
-            .addToBackStack(null)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
     }
-
-
 
 
     fun hacerLogOut(v: View){
