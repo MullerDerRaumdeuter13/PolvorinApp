@@ -93,6 +93,8 @@ class MainMenu : AppCompatActivity(), GPSListener {
     }
 
     private fun putFragment(frag: Fragment) {
+
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fraglayout,frag)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
