@@ -37,9 +37,11 @@
 
         <Button
             android:id="@+id/buttonAceptar"
-            android:layout_width="match_parent"
+            android:layout_width="423dp"
             android:layout_height="wrap_content"
-            android:text="Aceptar" />
+            android:background="#673AB7"
+            android:text="Aceptar"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

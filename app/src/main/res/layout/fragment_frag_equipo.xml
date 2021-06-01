@@ -5,6 +5,8 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#673AB7"
+    android:backgroundTint="#FFFFFF"
     tools:context=".FragEquipo">
 
     <LinearLayout
@@ -25,13 +27,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/equiposRV"
             android:layout_width="match_parent"
-            android:layout_height="452dp" />
+            android:layout_height="452dp"
+            android:background="#FFFFFF" />
 
         <Button
             android:id="@+id/crearEquipo_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AgregarEquipo" />
+            android:background="#673AB7"
+            android:backgroundTint="#673AB7"
+            android:text="Agregar Equipo"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

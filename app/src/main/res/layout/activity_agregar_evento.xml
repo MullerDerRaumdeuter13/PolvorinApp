@@ -7,8 +7,9 @@
     tools:context=".agregarEvento">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="395dp"
+        android:layout_height="498dp"
         android:layout_margin="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -18,10 +19,9 @@
         android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.416">
 
         <TextView
             android:id="@+id/textView5"
@@ -107,9 +107,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/polvorin_blue"
+                android:backgroundTint="#673AB7"
                 android:onClick="cancelar"
-                android:text="CANCELAR" />
+                android:text="CANCELAR"
+                android:textColor="#FFFFFF" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -123,7 +124,9 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/green"
                 android:onClick="creaEvento"
-                android:text="ACEPTAR" />
+                android:text="ACEPTAR"
+                android:textColor="#FFFFFF"
+                app:iconTint="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 
@@ -131,7 +134,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Crear Evento"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -140,4 +143,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

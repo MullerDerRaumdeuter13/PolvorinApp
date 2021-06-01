@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#9C27B0"
+    android:foregroundTint="#673AB7"
     tools:context=".MainMenu">
 
     <LinearLayout
@@ -43,8 +45,11 @@
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#673AB7"
         android:onClick="hacerLogOut"
         android:text="logout"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"

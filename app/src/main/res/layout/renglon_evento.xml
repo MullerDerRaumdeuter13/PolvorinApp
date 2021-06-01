@@ -17,14 +17,18 @@
             android:id="@+id/tituloEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#471F8E"
             android:text="TextView"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descripcionEvento"
             android:layout_width="match_parent"
             android:layout_height="78dp"
+            android:background="#A984EA"
             android:text="TextView" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

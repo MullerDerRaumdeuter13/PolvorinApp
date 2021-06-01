@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#573593"
         android:orientation="horizontal">
 
         <ImageView
@@ -36,7 +37,7 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,8 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:backgroundTint="#714949"
                 android:text="TextView"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnBorrarOnClick"
@@ -55,9 +57,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnBorrar_blue"
+                android:backgroundTint="@color/cancel_red"
                 android:gravity="center"
-                android:text="BORRAR" />
+                android:text="BORRAR"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
