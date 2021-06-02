@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,9 +9,17 @@
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:layout_width="399dp"
-        android:layout_height="698dp"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="174dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Ingresa la distancia que prefieras para ver eventos dentro de ese limite)" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,11 +46,15 @@
 
         <Button
             android:id="@+id/buttonAceptar"
-            android:layout_width="423dp"
-            android:layout_height="wrap_content"
+            android:layout_width="427dp"
+            android:layout_height="40dp"
             android:background="#673AB7"
+            android:backgroundTint="#673AB7"
+            android:foregroundTint="#673AB7"
             android:text="Aceptar"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:iconTint="#673AB7"
+            app:rippleColor="#FFFFFF" />
 
     </LinearLayout>
 
