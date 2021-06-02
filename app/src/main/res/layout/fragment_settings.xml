@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="174dp"
+        android:layout_height="272dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingTop="10dp">
@@ -56,6 +56,29 @@
             android:textColor="#FFFFFF"
             app:iconTint="#673AB7"
             app:rippleColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filtros "
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <Switch
+            android:id="@+id/myEvents_sw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mis eventos"
+            android:textColorHighlight="#000000"
+            android:textColorLink="#FFFFFF" />
+
+        <Switch
+            android:id="@+id/participo_sw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eventos en que participo" />
 
     </LinearLayout>
 

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -25,16 +26,25 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 lateinit var arrEventos: MutableList<Evento>
+private lateinit var mAuth: FirebaseAuth
 class eventosFrag : Fragment(), clickListenerEventos {
 
 
     private lateinit var baseDatos: FirebaseDatabase
-    var rango = 3000000.0
+    var rango = 10.0
+    var isMyEvents = false
+    var isParticipo = false
+    var usuario = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
+
+        mAuth = FirebaseAuth.getInstance()
+        this.usuario = mAuth.currentUser.uid
+
 
         //grabarEnBD(1,  "Evento1")
         //grabarEnBD(2, "Evento2")
@@ -46,11 +56,17 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
     fun loadPreferences() {
-        val pref = activity?.getSharedPreferences("rango", Context.MODE_PRIVATE)
+        val pref = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        //val prefMyEvents = activity?.getSharedPreferences("myEvents", Context.MODE_PRIVATE)
+        //val prefParticipo = activity?.getSharedPreferences("participo", Context.MODE_PRIVATE)
         if (pref != null) {
              this.rango = (pref.getInt("DIST_KEY",10) * 1000).toDouble()
-            println(rango.toString())
+
+             if (pref.getInt("MY_EVENTS_KEY",0) == 1) this.isMyEvents = true
+             if (pref.getInt("PARTICIPO_KEY",0) == 1) this.isParticipo = true
+
         }
+
     }
 
 
@@ -62,6 +78,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
         referencia.addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 arrEventos.clear()
                 for (registro in snapshot.children) {
                     val dist = FloatArray(3)
@@ -88,31 +105,128 @@ class eventosFrag : Fragment(), clickListenerEventos {
                         tiempo.format(formato)
 
                         if (tiempo.isAfter(tiempoActual)){
-                            val nombreEvento = (registro.child("nombreEvento").value).toString()
-                            val descripcionEvento =
-                                    (registro.child("descripcionEvento").value).toString()
-                            val tipoEvento = (registro.child("tipoEvento").value).toString()
+
+                            val participantes = (registro.child("participantes").value) as List<String>
                             val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
-                            val maxParticiantes =
+
+                            if (isParticipo){
+
+                                if(isMyEvents){
+                                    if(idCreadorEvento.equals(usuario)){
+                                        val nombreEvento = (registro.child("nombreEvento").value).toString()
+                                        val descripcionEvento =
+                                            (registro.child("descripcionEvento").value).toString()
+                                        val tipoEvento = (registro.child("tipoEvento").value).toString()
+                                        val maxParticiantes =
+                                            (registro.child("maxParticipantes").value).toString().toInt()
+
+                                        val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                                        val idEvento = (registro.child("idEvento").value).toString()
+
+                                        var participantesActuales =
+                                            registro.child("participantes").childrenCount.toInt()
+                                        val fechaHora = (registro.child("fechaHora").value)
+
+                                        //println("participantes hasta ahora: $participantesActuales")
+                                        //println(participantes)
+
+                                        val evento = Evento(
+                                            nombreEvento, descripcionEvento,
+                                            tipoEvento, idCreadorEvento, latEvento,
+                                            longEvento, maxParticiantes, participantes as ArrayList<String>,
+                                            idEvento, nombreParticipantes as ArrayList<String>,
+                                            fechaHora as ArrayList<Int>)
+                                        arrEventos.add(evento)
+                                    }
+                                }
+
+                                else if(participantes.contains(usuario)){
+                                    val nombreEvento = (registro.child("nombreEvento").value).toString()
+                                    val descripcionEvento =
+                                        (registro.child("descripcionEvento").value).toString()
+                                    val tipoEvento = (registro.child("tipoEvento").value).toString()
+                                    val maxParticiantes =
+                                        (registro.child("maxParticipantes").value).toString().toInt()
+
+                                    val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                                    val idEvento = (registro.child("idEvento").value).toString()
+
+                                    var participantesActuales =
+                                        registro.child("participantes").childrenCount.toInt()
+                                    val fechaHora = (registro.child("fechaHora").value)
+
+                                    //println("participantes hasta ahora: $participantesActuales")
+                                    //println(participantes)
+
+                                    val evento = Evento(
+                                        nombreEvento, descripcionEvento,
+                                        tipoEvento, idCreadorEvento, latEvento,
+                                        longEvento, maxParticiantes, participantes as ArrayList<String>,
+                                        idEvento, nombreParticipantes as ArrayList<String>,
+                                        fechaHora as ArrayList<Int>)
+                                    arrEventos.add(evento)
+                                }
+
+
+                            }
+
+                            else if (isMyEvents && !isParticipo){
+                                if(idCreadorEvento.equals(usuario)){
+                                    val nombreEvento = (registro.child("nombreEvento").value).toString()
+                                    val descripcionEvento =
+                                        (registro.child("descripcionEvento").value).toString()
+                                    val tipoEvento = (registro.child("tipoEvento").value).toString()
+                                    val maxParticiantes =
+                                        (registro.child("maxParticipantes").value).toString().toInt()
+
+                                    val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                                    val idEvento = (registro.child("idEvento").value).toString()
+
+                                    var participantesActuales =
+                                        registro.child("participantes").childrenCount.toInt()
+                                    val fechaHora = (registro.child("fechaHora").value)
+
+                                    //println("participantes hasta ahora: $participantesActuales")
+                                    //println(participantes)
+
+                                    val evento = Evento(
+                                        nombreEvento, descripcionEvento,
+                                        tipoEvento, idCreadorEvento, latEvento,
+                                        longEvento, maxParticiantes, participantes as ArrayList<String>,
+                                        idEvento, nombreParticipantes as ArrayList<String>,
+                                        fechaHora as ArrayList<Int>)
+                                    arrEventos.add(evento)
+                                }
+                            }
+
+                            else{
+                                val nombreEvento = (registro.child("nombreEvento").value).toString()
+                                val descripcionEvento =
+                                    (registro.child("descripcionEvento").value).toString()
+                                val tipoEvento = (registro.child("tipoEvento").value).toString()
+                                val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
+                                val maxParticiantes =
                                     (registro.child("maxParticipantes").value).toString().toInt()
-                            val participantes = (registro.child("participantes").value)
-                            val nombreParticipantes = (registro.child("nombreParticipantes").value)
-                            val idEvento = (registro.child("idEvento").value).toString()
 
-                            var participantesActuales =
+                                val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                                val idEvento = (registro.child("idEvento").value).toString()
+
+                                var participantesActuales =
                                     registro.child("participantes").childrenCount.toInt()
-                            val fechaHora = (registro.child("fechaHora").value)
+                                val fechaHora = (registro.child("fechaHora").value)
 
-                            //println("participantes hasta ahora: $participantesActuales")
-                            //println(participantes)
+                                //println("participantes hasta ahora: $participantesActuales")
+                                //println(participantes)
 
-                            val evento = Evento(
+                                val evento = Evento(
                                     nombreEvento, descripcionEvento,
                                     tipoEvento, idCreadorEvento, latEvento,
                                     longEvento, maxParticiantes, participantes as ArrayList<String>,
                                     idEvento, nombreParticipantes as ArrayList<String>,
                                     fechaHora as ArrayList<Int>)
-                            arrEventos.add(evento)
+                                arrEventos.add(evento)
+                            }
+
                         }
 
 
@@ -123,7 +237,6 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
                 }
                 (rvTarjetas.adapter as AdaptadorEventos).notifyDataSetChanged()
-
 
 
             }

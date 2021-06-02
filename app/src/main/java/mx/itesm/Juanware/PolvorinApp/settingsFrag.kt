@@ -28,7 +28,6 @@ class settingsFrag : Fragment() {
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        println("OncreateSettings")
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -49,7 +48,7 @@ class settingsFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val pref = activity?.getSharedPreferences("rango", Context.MODE_PRIVATE)
+        val pref = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
         super.onViewCreated(view, savedInstanceState)
 
         if (pref != null) {
@@ -59,27 +58,66 @@ class settingsFrag : Fragment() {
             if (pref != null) {
                 aceptarCambios(view, pref)
             }
-            }
+        }
+
+        myEvents_sw.setOnClickListener{
+            if (pref != null)
+                cambiarMyEvents(myEvents_sw.isChecked(), pref)
+        }
+
+        participo_sw.setOnClickListener{
+            if (pref != null)
+                cambiarParticipo(participo_sw.isChecked(), pref)
+        }
 
         }
-    }
+
+}
 
     fun aceptarCambios(view: View, pref: SharedPreferences){
-        println("Cambiando Preferencias")
         val insertedText  = view.editTextNumber.text.toString()
-        println(insertedText)
 
         if (insertedText.toInt() < 1500) {
-            println(pref)
             val editor = pref.edit()
             editor.apply{putInt("DIST_KEY", insertedText.toInt())}.apply()
         }
     }
 
+    fun cambiarParticipo(isChecked: Boolean, pref: SharedPreferences) {
+        val editor = pref.edit()
+        if (isChecked){
+            editor.apply{putInt("PARTICIPO_KEY", 1)}.apply()
+        } else{
+            editor.apply{putInt("PARTICIPO_KEY", 0)}.apply()
+        }
+    }
+
+    fun cambiarMyEvents(isChecked: Boolean, pref: SharedPreferences){
+        val editor = pref.edit()
+        if (isChecked){
+            editor.apply{putInt("MY_EVENTS_KEY", 1)}.apply()
+        } else{
+            editor.apply{putInt("MY_EVENTS_KEY", 0)}.apply()
+        }
+    }
+
     fun loadPreferences(view: View, pref: SharedPreferences){
         val savedInt = pref.getInt("DIST_KEY",10)
-        println(savedInt.toString())
+        val myEvento = pref.getInt("MY_EVENTS_KEY", 0)
+        val participo = pref.getInt("PARTICIPO_KEY", 0)
+        var myEventoBool = false
+        var participoBool = false
+        if (myEvento == 1){
+            myEventoBool = true
+        }
+        if (participo == 1){
+            participoBool = true
+        }
         view.editTextNumber.setText(savedInt.toString())
+        view.myEvents_sw.setChecked(myEventoBool)
+        view.participo_sw.setChecked(participoBool)
+
+
     }
 
 
