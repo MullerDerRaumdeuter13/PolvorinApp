@@ -20,26 +20,29 @@ import kotlinx.android.synthetic.main.fragment_eventos.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 lateinit var arrEventos: MutableList<Evento>
+
 class eventosFrag : Fragment(), clickListenerEventos {
 
+    //arrEventos = mutableListOf()
 
     private lateinit var baseDatos: FirebaseDatabase
-
     var rango = 3000000.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
+
+        //leerDatos()
+
+
+
 
         //grabarEnBD(1,  "Evento1")
         //grabarEnBD(2, "Evento2")
         //grabarEnBD(3, "Evento3")
         //grabarEnBD(4, "Evento4")
-
-        leerDatos()
+        println("onCreate")
 
     }
 
@@ -54,8 +57,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
 
-    fun leerDatos() {
-
+    fun leerDatos(rvTarjetas: RecyclerView) {
+        println("leyendo datos")
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Eventos/")
 
@@ -69,7 +72,7 @@ class eventosFrag : Fragment(), clickListenerEventos {
                     val longEvento = (registro.child("longEvento").value).toString().toDouble()
                     Location.distanceBetween(latitud, longitude,latEvento, longEvento, dist)
 
-                    println("DISTANCIA" + dist[0].toString())
+                    //println("DISTANCIA" + dist[0].toString())
 
                     if (dist[0] <= rango) {
 
@@ -89,8 +92,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
                         var participantesActuales =
                             registro.child("participantes").childrenCount.toInt()
 
-                        println("participantes hasta ahora: $participantesActuales")
-                        println(participantes)
+                        //println("participantes hasta ahora: $participantesActuales")
+                        //println(participantes)
 
 
                         //println(idEvento)
@@ -103,11 +106,17 @@ class eventosFrag : Fragment(), clickListenerEventos {
                             idEvento, nombreParticipantes as ArrayList<String>
                         )
                         arrEventos.add(evento)
+
                     }
 
 
                 }
-//                println(arrEventos)
+                println(arrEventos)
+                println(rvTarjetas)
+                (rvTarjetas.adapter as AdaptadorEventos).notifyDataSetChanged()
+                println(rvTarjetas.adapter)
+                //println(adapter)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -118,12 +127,14 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
     private fun configurarRV(rvTarjetas: RecyclerView){
-        println("setup RB")
-        val layoutManager = LinearLayoutManager(this.context)
-        val  adaptador = AdaptadorEventos(arrEventos)
+        val layoutManager = LinearLayoutManager(activity)
         rvTarjetas.layoutManager = layoutManager
+        var adaptador  = AdaptadorEventos(arrEventos)
         rvTarjetas.adapter=adaptador
         adaptador.listener = this
+        adaptador.notifyDataSetChanged()
+        println("configurarRv")
+        leerDatos(rvTarjetas)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -132,8 +143,10 @@ class eventosFrag : Fragment(), clickListenerEventos {
             activity?.let {
                 val intent = Intent(it, agregarEvento::class.java)
                 it.startActivity(intent)
+
             }
         }
+        println("onViewCreated")
     }
 
     override fun onCreateView(

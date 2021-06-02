@@ -29,7 +29,6 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
         holder.vistaRenglonEv.setOnClickListener {
             listener?.clicked(position)
         }
-
     }
 
 
@@ -44,6 +43,7 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
             vistaRenglonEv.tituloEvento.text = evento.nombreEvento
             vistaRenglonEv.descripcionEvento.text = slideBody
         }
+
     }
 
 }

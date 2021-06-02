@@ -26,14 +26,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10">
-
-            </SearchView>
-
             <Button
                 android:id="@+id/crearEventobutton"
                 android:layout_width="wrap_content"
@@ -43,12 +35,15 @@
                 android:backgroundTint="@color/green"
                 android:text="Crear Evento"
                 android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTarjetas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             tools:listitem="@layout/renglon_evento">
 
         </androidx.recyclerview.widget.RecyclerView>
