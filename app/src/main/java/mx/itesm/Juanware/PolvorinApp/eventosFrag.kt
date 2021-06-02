@@ -74,17 +74,18 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
                         val tiempoActual = LocalDateTime.now()
-                        val formato = DateTimeFormatter.ofPattern("dd/M/yyyy HzH:mm")
+                        val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
                         tiempoActual.format(formato)
-                        val dia = (registro.child("fechaHora").child(("0")).value).toString()
-                        val mes = (registro.child("fechaHora").child(("1")).value).toString()
-                        val anio = (registro.child("fechaHora").child(("2")).value).toString()
-                        val hora = (registro.child("fechaHora").child(("3")).value).toString()
-                        val minuto = (registro.child("fechaHora").child(("4")).value).toString()
+                        val dia = (registro.child("fechaHora").child(("0")).value).toString().toInt()
+                        val mes = (registro.child("fechaHora").child(("1")).value).toString().toInt()
+                        val anio = (registro.child("fechaHora").child(("2")).value).toString().toInt()
+                        val hora = (registro.child("fechaHora").child(("3")).value).toString().toInt()
+                        val minuto = (registro.child("fechaHora").child(("4")).value).toString().toInt()
                         val stringFechaHora = "$dia/$mes/$anio $hora:$minuto" as CharSequence
 
 
-                        val tiempo = LocalDateTime.parse(stringFechaHora, formato)
+                        val tiempo = LocalDateTime.of(anio, mes, dia, hora, minuto)
+                        tiempo.format(formato)
 
                         if (tiempo.isAfter(tiempoActual)){
                             val nombreEvento = (registro.child("nombreEvento").value).toString()

@@ -36,11 +36,15 @@ class AdaptadorEventos(private val arrEventos: MutableList<Evento>): RecyclerVie
     class VistaRenglonEventos(val vistaRenglonEv: View): RecyclerView.ViewHolder(vistaRenglonEv) {
         fun set(evento: Evento){
             var slideBody = StringBuilder()
+            val dia = evento.fechaHora[0].toString().toInt()
+            val mes = evento.fechaHora[1].toString().toInt()
+            val anio = evento.fechaHora[2].toString().toInt()
+
 
             slideBody.append("Tipo de Evento: ${evento.tipoEvento}\n" +
                     "participantes: ${evento.participantes.size} / ${evento.maxParticipantes}\n" +
-                    "Creador del Evento: ${evento.nombreParticipantes.first()}" +
-                    "Fecha de Evento: ${evento.fechaHora[0]}/${evento.fechaHora[1]}/${evento.fechaHora[2]}")
+                    "Creador del Evento: ${evento.nombreParticipantes.first()}\n" +
+                    "Fecha de Evento: $dia/$mes/$anio")
 
             vistaRenglonEv.tituloEvento.text = evento.nombreEvento
             vistaRenglonEv.descripcionEvento.text = slideBody

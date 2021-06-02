@@ -28,17 +28,17 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Distancia de eventos"
+                android:layout_weight="3"
+                android:text="Distancia de eventos (km):"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editTextNumber"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="number" />
 
@@ -46,8 +46,9 @@
 
         <Button
             android:id="@+id/buttonAceptar"
-            android:layout_width="427dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:background="#673AB7"
             android:backgroundTint="#673AB7"
             android:foregroundTint="#673AB7"
