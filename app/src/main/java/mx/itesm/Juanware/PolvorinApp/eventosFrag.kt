@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -18,12 +20,13 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 lateinit var arrEventos: MutableList<Evento>
-
 class eventosFrag : Fragment(), clickListenerEventos {
 
-    //arrEventos = mutableListOf()
 
     private lateinit var baseDatos: FirebaseDatabase
     var rango = 3000000.0
@@ -32,11 +35,6 @@ class eventosFrag : Fragment(), clickListenerEventos {
         super.onCreate(savedInstanceState)
         baseDatos = FirebaseDatabase.getInstance()
         arrEventos = mutableListOf()
-
-        //leerDatos()
-
-
-
 
         //grabarEnBD(1,  "Evento1")
         //grabarEnBD(2, "Evento2")
@@ -58,11 +56,11 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
     fun leerDatos(rvTarjetas: RecyclerView) {
-        println("leyendo datos")
         val baseDatos = FirebaseDatabase.getInstance()
         val referencia = baseDatos.getReference("/Eventos/")
 
         referencia.addListenerForSingleValueEvent(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrEventos.clear()
                 for (registro in snapshot.children) {
@@ -70,52 +68,62 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
                     val latEvento = (registro.child("latEvento").value).toString().toDouble()
                     val longEvento = (registro.child("longEvento").value).toString().toDouble()
-                    Location.distanceBetween(latitud, longitude,latEvento, longEvento, dist)
-
-                    //println("DISTANCIA" + dist[0].toString())
+                    Location.distanceBetween(latitud, longitude, latEvento, longEvento, dist)
 
                     if (dist[0] <= rango) {
 
-                        val nombreEvento = (registro.child("nombreEvento").value).toString()
-                        val descripcionEvento =
-                            (registro.child("descripcionEvento").value).toString()
-                        val tipoEvento = (registro.child("tipoEvento").value).toString()
-                        val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
-                        //val latEvento = (registro.child("latEvento").value).toString().toDouble()
-                        //val longEvento = (registro.child("longEvento").value).toString().toDouble()
-                        val maxParticiantes =
-                            (registro.child("maxParticipantes").value).toString().toInt()
-                        val participantes = (registro.child("participantes").value)
-                        val nombreParticipantes = (registro.child("nombreParticipantes").value)
-                        val idEvento = (registro.child("idEvento").value).toString()
 
-                        var participantesActuales =
-                            registro.child("participantes").childrenCount.toInt()
-
-                        //println("participantes hasta ahora: $participantesActuales")
-                        //println(participantes)
+                        val tiempoActual = LocalDateTime.now()
+                        val formato = DateTimeFormatter.ofPattern("dd/M/yyyy HzH:mm")
+                        tiempoActual.format(formato)
+                        val dia = (registro.child("fechaHora").child(("0")).value).toString()
+                        val mes = (registro.child("fechaHora").child(("1")).value).toString()
+                        val anio = (registro.child("fechaHora").child(("2")).value).toString()
+                        val hora = (registro.child("fechaHora").child(("3")).value).toString()
+                        val minuto = (registro.child("fechaHora").child(("4")).value).toString()
+                        val stringFechaHora = "$dia/$mes/$anio $hora:$minuto" as CharSequence
 
 
-                        //println(idEvento)
-                        //println(nombreEvento)
+                        val tiempo = LocalDateTime.parse(stringFechaHora, formato)
 
-                        val evento = Evento(
-                            nombreEvento, descripcionEvento,
-                            tipoEvento, idCreadorEvento, latEvento,
-                            longEvento, maxParticiantes, participantes as ArrayList<String>,
-                            idEvento, nombreParticipantes as ArrayList<String>
-                        )
-                        arrEventos.add(evento)
+                        if (tiempo.isAfter(tiempoActual)){
+                            val nombreEvento = (registro.child("nombreEvento").value).toString()
+                            val descripcionEvento =
+                                    (registro.child("descripcionEvento").value).toString()
+                            val tipoEvento = (registro.child("tipoEvento").value).toString()
+                            val idCreadorEvento = (registro.child("idCreadorEvento").value).toString()
+                            val maxParticiantes =
+                                    (registro.child("maxParticipantes").value).toString().toInt()
+                            val participantes = (registro.child("participantes").value)
+                            val nombreParticipantes = (registro.child("nombreParticipantes").value)
+                            val idEvento = (registro.child("idEvento").value).toString()
+
+                            var participantesActuales =
+                                    registro.child("participantes").childrenCount.toInt()
+                            val fechaHora = (registro.child("fechaHora").value)
+
+                            //println("participantes hasta ahora: $participantesActuales")
+                            //println(participantes)
+
+                            val evento = Evento(
+                                    nombreEvento, descripcionEvento,
+                                    tipoEvento, idCreadorEvento, latEvento,
+                                    longEvento, maxParticiantes, participantes as ArrayList<String>,
+                                    idEvento, nombreParticipantes as ArrayList<String>,
+                                    fechaHora as ArrayList<Int>)
+                            arrEventos.add(evento)
+                        }
+
+
+
 
                     }
 
 
                 }
-                println(arrEventos)
-                println(rvTarjetas)
                 (rvTarjetas.adapter as AdaptadorEventos).notifyDataSetChanged()
-                println(rvTarjetas.adapter)
-                //println(adapter)
+
+
 
             }
 
@@ -127,7 +135,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
 
 
     private fun configurarRV(rvTarjetas: RecyclerView){
-        val layoutManager = LinearLayoutManager(activity)
+        println("setup RB")
+        val layoutManager = LinearLayoutManager(this.context)
         rvTarjetas.layoutManager = layoutManager
         var adaptador  = AdaptadorEventos(arrEventos)
         rvTarjetas.adapter=adaptador
@@ -143,10 +152,8 @@ class eventosFrag : Fragment(), clickListenerEventos {
             activity?.let {
                 val intent = Intent(it, agregarEvento::class.java)
                 it.startActivity(intent)
-
             }
         }
-        println("onViewCreated")
     }
 
     override fun onCreateView(
