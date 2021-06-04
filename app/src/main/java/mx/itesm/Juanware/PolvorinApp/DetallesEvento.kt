@@ -46,13 +46,19 @@ class DetallesEvento : AppCompatActivity() {
         val anio = detallesEvento.fechaHora[2].toString().toInt()
         val hora = detallesEvento.fechaHora[3].toString().toInt()
         val minuto = detallesEvento.fechaHora[4].toString().toInt()
+        var minutoStr = ""
+        if (minuto < 10){
+            minutoStr = "0$minuto"
+        } else {
+            minutoStr = "$minuto"}
+
 
         var eventoBody = StringBuilder()
         eventoBody.append("Descripcion: ${detallesEvento.descripcionEvento}\n" +
                 "participantes: ${detallesEvento.participantes.size} / ${detallesEvento.maxParticipantes}\n" +
                 "Creador del Evento: ${detallesEvento.nombreParticipantes.first()}\n" +
                 "Fecha del evento: $dia/$mes/$anio\n" +
-                "Hora del evento: $hora:$minuto")
+                "Hora del evento: $hora:$minutoStr")
 
         etNombreEvento.text =detallesEvento.nombreEvento
         etBody.text = eventoBody
